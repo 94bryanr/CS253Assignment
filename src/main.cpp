@@ -6,6 +6,10 @@
 #include "PGMreader.h"
 #include "PGMscale.h"
 #include "PGMwriter.h"
+#ifndef USING_STDLIB
+    #include <stdlib.h>
+    #define USING_STDLIB
+#endif
 
 void exitWithError(string errorMessage);
 

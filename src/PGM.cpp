@@ -1,4 +1,8 @@
 #include "PGM.h"
+#ifndef USING_STDLIB
+    #include <stdlib.h>
+    #define USING_STDLIB
+#endif
 
 using std::cout;
 using std::endl;
@@ -6,7 +10,7 @@ using std::vector;
 using std::string;
 using std::cerr;
 
-PGM::PGM(int width, int height, int maxAllowedValue, vector<int> pixelData) :
+PGM::PGM(unsigned int width, unsigned int height, unsigned int maxAllowedValue, vector<unsigned int> pixelData) :
 	width(width), height(height), maxAllowedValue(maxAllowedValue), pixelData(pixelData){
 
 	if (pixelData.size() == 0){
@@ -39,8 +43,9 @@ void PGM::testForInvalidData(){
 	}
 
 	//pixels
-	for(int currentPixel : pixelData){
-		if (currentPixel < 0 || currentPixel > maxAllowedValue){
+	for(unsigned int currentPixel = 0; currentPixel < pixelData.size(); currentPixel++){
+		//cast pixelData[currentPixel] to int because unsigned int is never < 0
+		if ((int)pixelData[currentPixel] < 0 || pixelData[currentPixel] > maxAllowedValue){
 			exitWithError("Pixel value out of range.");
 		}
 	}
@@ -56,48 +61,48 @@ void PGM::calculateFields(){
 	//max, min, and average
 	minPixel = pixelData[0];
 	maxPixel = pixelData[0];
-	int runningTotal = 0;
-	for(int current : pixelData){
+	unsigned int runningTotal = 0;
+	for(unsigned int current = 0; current < pixelData.size(); current++){
 		//min
-		if (current < minPixel){
-			minPixel = current;
+		if (pixelData[current] < minPixel){
+			minPixel = pixelData[current];
 		}
 		//max
-		if (current > maxPixel){
-			maxPixel = current;
+		if (pixelData[current] > maxPixel){
+			maxPixel = pixelData[current];
 		}
 		//average
-		runningTotal += current;
+		runningTotal += pixelData[current];
 	}
 	averagePixel = (double)runningTotal/(double)totalPixels;
 }
 
 
-int PGM::getHeight(){
+unsigned int PGM::getHeight(){
 	return height;
 }
 
-int PGM::getWidth(){
+unsigned int PGM::getWidth(){
 	return width;
 }
 
-int PGM::getMaxAllowedValue(){
+unsigned int PGM::getMaxAllowedValue(){
 	return maxAllowedValue;
 }
 
-int PGM::getTotalPixels(){
+unsigned int PGM::getTotalPixels(){
 	return totalPixels;
 }
 
-vector<int> PGM::getPixelData(){
+vector<unsigned int> PGM::getPixelData(){
 	return pixelData;
 }
 
-int PGM::getMaxPixel(){
+unsigned int PGM::getMaxPixel(){
 	return maxPixel;
 }
 
-int PGM::getMinPixel(){
+unsigned int PGM::getMinPixel(){
 	return minPixel;
 }
 

@@ -1,11 +1,15 @@
 #include "PGMreader.h"
+#ifndef USING_STDLIB
+    #include <stdlib.h>
+    #define USING_STDLIB
+#endif
 
 using std::endl;
 using std::ifstream;
 using std::cerr;
 
-PGMreader::PGMreader(string filename){
-	fileStream.open(filename, std::ios_base::in);
+PGMreader::PGMreader(string filename){ 
+	fileStream.open(filename.c_str(), std::ios_base::in);
 	if(!fileStream){
 		exitWithError("File can not be opened");
 	}
@@ -15,9 +19,12 @@ PGMreader::PGMreader(string filename){
 }
 
 PGM PGMreader::getPGM(){
+    //Find beginning and end of pixel data
 	vector<int>::const_iterator first = fileData.begin() + 3;
 	vector<int>::const_iterator last = fileData.end();
-	vector<int> pixelData(first, last);
+
+	vector<unsigned int> pixelData(first, last);
+
 	PGM pgm(fileData[0], fileData[1], fileData[2], pixelData);
 	return pgm;
 }

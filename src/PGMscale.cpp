@@ -1,4 +1,8 @@
 #include "PGMscale.h"
+#ifndef USING_STDLIB
+    #include <stdlib.h>
+    #define USING_STDLIB
+#endif
 
 using std::endl;
 using std::cerr;
@@ -8,12 +12,12 @@ PGMscale::PGMscale(PGM pgm) : scaledPGM(pgm){
 }
 
 void PGMscale::scalePGM(){
-	vector<int> pixelVector = scaledPGM.getPixelData();
+	vector<unsigned int> pixelVector = scaledPGM.getPixelData();
 
 	// Denominator of the scaling equations, only needs to be calculated one time
-	int maximumPixel = scaledPGM.getMaxPixel();
-	int minimumPixel = scaledPGM.getMinPixel();
-	int scaleDenominator = maximumPixel - minimumPixel;
+	unsigned int maximumPixel = scaledPGM.getMaxPixel();
+	unsigned int minimumPixel = scaledPGM.getMinPixel();
+	unsigned int scaleDenominator = maximumPixel - minimumPixel;
 	
 	// Image is one solid color
 	if(maximumPixel == minimumPixel){
@@ -21,14 +25,15 @@ void PGMscale::scalePGM(){
 	}
 	
 	// Algorithm to scale each pixel
-	for(int currentPixel = 0; currentPixel < pixelVector.size(); currentPixel++){
+	for(unsigned int currentPixel = 0; currentPixel < pixelVector.size(); currentPixel++){
 		double newValue = (double)( 255.0 * ( pixelVector[currentPixel] - minimumPixel ) ) / (double)scaleDenominator;
-		int roundedValue = round(newValue);
+		unsigned int roundedValue = round(newValue);
 		pixelVector[currentPixel] = roundedValue;
 	}
 
 	//Construct the new PGM
-	PGM rescaledPGM(scaledPGM.getWidth(), scaledPGM.getHeight(), 255, pixelVector);
+	unsigned int newMaxPixel = 255;
+	PGM rescaledPGM(scaledPGM.getWidth(), scaledPGM.getHeight(), newMaxPixel, pixelVector);
 	scaledPGM = rescaledPGM;
 }
 
