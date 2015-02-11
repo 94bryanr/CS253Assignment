@@ -2,7 +2,7 @@ CC=g++
 CFLAGS=-c -Wall
 
 PA: main.o PGM.o PGMreader.o PGMscale.o PGMwriter.o
-	$(CC) main.o PGMreader.o PGM.o PGMscale.o PGMwriter.o -o PA2
+	$(CC) main.o PGMreader.o PGM.o PGMscale.o PGMwriter.o -o pa2
 
 main.o: main.cpp PGMreader.h PGM.h PGMscale.h PGMwriter.h
 	$(CC) $(CFLAGS) main.cpp
