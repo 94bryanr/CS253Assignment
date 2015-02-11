@@ -20,6 +20,32 @@ PGM::PGM(int width, int height, int maxAllowedValue, vector<int> pixelData) :
 	calculateFields();	
 }
 
+//Make sure all supplied data is valid
+void PGM::testForInvalidData(){
+	//maxAllowedValue
+	if(maxAllowedValue == 256){
+		maxAllowedValue = 255;
+	}
+	else if(maxAllowedValue < 1 || 256 < maxAllowedValue){
+		exitWithError("MaxAllowedValue is out of range.");
+	}
+
+	//width/height
+	if(width < 1){
+		exitWithError("Width is out of range.");
+	}
+	if(height < 1){
+		exitWithError("Height is out of range.");
+	}
+
+	//pixels
+	for(int currentPixel : pixelData){
+		if (currentPixel < 0 || currentPixel > maxAllowedValue){
+			exitWithError("Pixel value out of range.");
+		}
+	}
+}
+
 //Fill in data about the image(average pixel, max pixel, total pixels, etc)
 void PGM::calculateFields(){
 	//width and height and maxAllowedValue are passed into the constructor
@@ -46,30 +72,6 @@ void PGM::calculateFields(){
 	averagePixel = (double)runningTotal/(double)totalPixels;
 }
 
-void PGM::testForInvalidData(){
-	//maxAllowedValue
-	if(maxAllowedValue == 256){
-		maxAllowedValue = 255;
-	}
-	else if(maxAllowedValue < 1 || 256 < maxAllowedValue){
-		exitWithError("MaxAllowedValue is out of range.");
-	}
-
-	//width/height
-	if(width < 1){
-		exitWithError("Width is out of range.");
-	}
-	if(height < 1){
-		exitWithError("Height is out of range.");
-	}
-
-	//pixels
-	for(int currentPixel : pixelData){
-		if (currentPixel < 0 || currentPixel > maxAllowedValue){
-			exitWithError("Pixel value out of range.");
-		}
-	}
-}
 
 int PGM::getHeight(){
 	return height;

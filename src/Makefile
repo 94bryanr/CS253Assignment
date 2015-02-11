@@ -1,10 +1,10 @@
 CC=g++
 CFLAGS=-c -Wall
 
-PA: main.o PGM.o PGMreader.o PGMscale.o
-	$(CC) main.o PGMreader.o PGM.o PGMscale.o -o PA2
+PA: main.o PGM.o PGMreader.o PGMscale.o PGMwriter.o
+	$(CC) main.o PGMreader.o PGM.o PGMscale.o PGMwriter.o -o PA2
 
-main.o: main.cpp PGMreader.h PGM.h PGMscale.h
+main.o: main.cpp PGMreader.h PGM.h PGMscale.h PGMwriter.h
 	$(CC) $(CFLAGS) main.cpp
 
 PGM.o: PGM.cpp PGM.h
@@ -15,3 +15,6 @@ PGMreader.o: PGMreader.cpp PGMreader.h
 
 PGMscale.o: PGMscale.cpp PGMscale.h
 	$(CC) $(CFLAGS) PGMscale.cpp
+
+PGMwriter.o: PGMwriter.cpp PGMwriter.h
+	$(CC) $(CFLAGS) PGMwriter.cpp

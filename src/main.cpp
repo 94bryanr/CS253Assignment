@@ -1,26 +1,40 @@
 #include<iostream>
-#include "PGM.h"
+#ifndef USING_PGM
+	#define USING_PGM
+	#include "PGM.h"
+#endif
 #include "PGMreader.h"
 #include "PGMscale.h"
+#include "PGMwriter.h"
+
+void exitWithError(string errorMessage);
 
 using std::cout;
 using std::endl;
 using std::vector;
+using std::cerr;
 
 int main(int argc, char* argv[]){
-	vector<int> test;
-	test.push_back(10);
-	test.push_back(255);
-	test.push_back(-0);
-	test.push_back(2);
-	PGM pgm(4, 1, 255, test);
-	cout << "Total Pixels: " << pgm.getTotalPixels() << endl;
-	cout << "Max Pixel: " << pgm.getMaxPixel() << endl;
-	cout << "Min Pixel: " << pgm.getMinPixel() << endl;
-	cout << "Average Pixel: " << pgm.getAveragePixel() << endl;
+	if(argc != 3){
+		exitWithError("Incorrect number of arguments");
+	}
+	string fileName = argv[1];
+	string outputFileLocation = argv[2];
 
-	//PGMreader reader(filename);
+	// Parse in our PGM file
+	PGMreader reader(fileName);
+	PGM pgm = reader.getPGM();
 
-	//PGM testPGM();
-	//PGMscale scale(testPGM);
+	// Scale the PGM
+	PGMscale scaler(pgm);
+	PGM scaledPGM = scaler.getScaledPGM();
+
+	// Write the PGM to a file
+	PGMwriter writer(scaledPGM, outputFileLocation);
+	writer.write();
+}
+
+void exitWithError(string errorMessage){
+	cerr << "Error: " << errorMessage << endl;
+	exit(-1);
 }
