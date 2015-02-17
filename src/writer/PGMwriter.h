@@ -1,7 +1,7 @@
 #include <iostream>
 #ifndef USING_PGM
 	#define USING_PGM
-	#include "PGM.h"
+	#include "../PGM.h"
 #endif
 #include <fstream>
 
