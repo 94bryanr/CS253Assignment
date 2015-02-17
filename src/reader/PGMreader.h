@@ -7,6 +7,7 @@
 	#include "../PGM.h"
 #endif
 #include "PGMAreader.h"
+#include "PGMBreader.h"
 
 using std::fstream;
 using std::string;
@@ -21,5 +22,5 @@ class PGMreader{
 
 	private:
 		/// Holds the PGM reader
-		PGMAreader reader;
+		PGMBreader reader;
 };

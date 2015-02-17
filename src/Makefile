@@ -3,8 +3,8 @@ INC_READER = reader
 CC=g++
 CFLAGS=-c -Wall -std=c++98 -pedantic-errors -I $(INC_WRITER) -I $(INC_READER)
 
-PA: main.o PGM.o PGMreader.o PGMAreader.o PGMscale.o PGMwriter.o
-		$(CC) main.o PGMreader.o PGMAreader.o PGM.o PGMscale.o PGMwriter.o -o pa2
+PA: main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMscale.o PGMwriter.o
+		$(CC) main.o PGMreader.o PGMAreader.o PGMBreader.o PGM.o PGMscale.o PGMwriter.o -o pa2
 
 main.o: main.cpp $(INC_READER)/PGMreader.h PGM.h PGMscale.h $(INC_WRITER)/PGMwriter.h
 		$(CC) $(CFLAGS) main.cpp
@@ -23,3 +23,6 @@ PGMreader.o: $(INC_READER)/PGMreader.cpp $(INC_READER)/PGMreader.h
 	
 PGMAreader.o: $(INC_READER)/PGMAreader.cpp $(INC_READER)/PGMAreader.h
 		$(CC) $(CFLAGS)  $(INC_READER)/PGMAreader.cpp
+	
+PGMBreader.o: $(INC_READER)/PGMBreader.cpp $(INC_READER)/PGMBreader.h
+		$(CC) $(CFLAGS)  $(INC_READER)/PGMBreader.cpp
