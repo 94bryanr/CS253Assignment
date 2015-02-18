@@ -7,9 +7,10 @@
 using std::endl;
 using std::ifstream;
 using std::cerr;
+using std::cout;
 
 PGMBreader::PGMBreader(string filename){ 
-	fileStream.open(filename.c_str(), std::ios_base::in);
+	fileStream.open(filename.c_str(), std::ios_base::in | std::ios_base::binary);
 	if(!fileStream){
 		exitWithError("File can not be opened");
 	}
@@ -35,33 +36,47 @@ void PGMBreader::testMagicNumber(){
 	char secondChar;
 	fileStream.get(firstChar);
 	fileStream.get(secondChar);
-	bool correctMagicNumbers = (firstChar == 'P' && secondChar == '2');
+	bool correctMagicNumbers = (firstChar == 'P' && secondChar == '5');
 	if(!correctMagicNumbers){
 		exitWithError("File does not have magic numbers!");
 	}
 }
 
 void PGMBreader::readFile(){
-	int current;
-	while(!fileStream.eof()){
-		if(fileStream >> current){
-			//Current is an integer
-			fileData.push_back(current);
+	unsigned char cur; //will contain the integer value of the pixel
+	unsigned int current;
+	unsigned int headerLength = 12; //number of bytes in the entire header
+	unsigned int headerSize = 4; //the width of a header value in bytes
+
+	//Get header
+	unsigned int runningHeaderValue = 0;
+	for(unsigned int i = 0; i < headerLength; i++){
+		//Read in a char then conver to int
+		fileStream >> cur;
+		current = cur;
+		cout << "Current: " << current << endl;
+
+		if(current != 0){
+			//Add value to data
+			unsigned int pushBack = 8 * (3-(i%4));
+			cout << "Pushing Back(# bits): " << pushBack << endl;
+			unsigned int valueToAdd = current << pushBack;
+			cout << "Adding: " << valueToAdd << " To: " << runningHeaderValue << endl;
+			runningHeaderValue += valueToAdd;
 		}
-		else if(fileStream.fail() && !fileStream.eof()){
-			//We are not reading a digit
-			fileStream.clear(); //Clear the fail bit
-			string comment;
-			if(std::getline(fileStream, comment)){
-				//We have read in a comment
-				//Check for comment delimiter 
-				if(comment[0] != '#'){
-					exitWithError("Incorrect comment formatting");
-				}
-			}
-			else{
-				exitWithError("Unknown input value");
-			}
+		if( (i+1) % headerSize == 0){
+			//Finalize the data
+			cout << "Header: " << runningHeaderValue << "\n" << endl;
+			fileData.push_back(runningHeaderValue);
+			runningHeaderValue = 0;
+		}
+	}
+
+	while(!fileStream.eof()){
+		if(fileStream >> cur){
+			//Current is a byte 
+			current = cur;
+			fileData.push_back(current);
 		}
 	}
 }

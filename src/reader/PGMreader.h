@@ -22,5 +22,7 @@ class PGMreader{
 
 	private:
 		/// Holds the PGM reader
-		PGMBreader reader;
+		PGMAreader* readerA;
+		PGMBreader* readerB;
+		char chosenReader;
 };

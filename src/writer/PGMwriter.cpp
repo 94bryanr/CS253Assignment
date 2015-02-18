@@ -8,31 +8,30 @@ using std::endl;
 using std::cerr;
 using std::fstream;
 
-PGMwriter::PGMwriter(PGM pgm, string fileLocation)
-   	: pgm(pgm), fileLocation(fileLocation)  {
-
+PGMwriter::PGMwriter(PGM pgm, string fileLocation) {
+	//Determine if we are using an ASCII or BINARY writer
+	//Filename ends with .pgma, use ASCII
+	usingWriter = 'z';
+	if(fileLocation.substr(fileLocation.length() - 5) == ".pgma"){
+		writerA = new PGMAwriter(pgm, fileLocation);
+		usingWriter = 'a';
+	}
+	else{
+		writerB = new PGMBwriter(pgm, fileLocation);
+		usingWriter = 'b';
+	}
 }
 
 void PGMwriter::write(){
-	fstream outputStream(fileLocation.c_str(), std::ios::out);
-	if(!outputStream){
-		exitWithError("Can not open file for writing");
+	//If using writerA, call A writers function
+	if(usingWriter == 'a'){
+		writerA->write();
 	}
-
-	//Magic Numbers
-	outputStream << "P2" << endl;
-	
-	//Width, height, max
-	outputStream << pgm.getWidth() << " " << pgm.getHeight() << " " << pgm.getMaxAllowedValue() << endl;
-
-	//Pixels
-	vector<unsigned int> pixelData = pgm.getPixelData();
-	for (unsigned int location = 0; location < pgm.getTotalPixels(); location++){
-		outputStream << pixelData[location] << " ";
-		//Outputs the pixels with line formatting
-		if( ( (location+1) % pgm.getWidth() ) == 0 ){
-			outputStream << endl;
-		}
+	else if(usingWriter == 'b'){
+		writerB->write();
+	}
+	else{
+		exitWithError("No writer chosen");
 	}
 }
 

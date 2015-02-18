@@ -4,6 +4,8 @@
 	#include "../PGM.h"
 #endif
 #include <fstream>
+#include "PGMAwriter.h"
+#include "PGMBwriter.h"
 
 class PGMwriter{
 	public:
@@ -13,10 +15,8 @@ class PGMwriter{
 		void write();
 
 	private:
-		/// PGM object that will be parsed and written to a file
-		PGM pgm;
-		/// Location to write output file to.
-		string fileLocation;
-		/// Exit operating system with -1 and output error to cerr.
 		void exitWithError(string errorMessage);
+		PGMAwriter* writerA;
+		PGMBwriter* writerB;
+		char usingWriter;
 };
