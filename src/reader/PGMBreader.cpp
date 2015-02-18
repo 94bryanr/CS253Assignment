@@ -7,10 +7,10 @@
 using std::endl;
 using std::ifstream;
 using std::cerr;
-using std::cout;
 
 PGMBreader::PGMBreader(string filename){ 
 	fileStream.open(filename.c_str(), std::ios_base::in | std::ios_base::binary);
+	fileStream.unsetf(std::ios_base::skipws);
 	if(!fileStream){
 		exitWithError("File can not be opened");
 	}
@@ -54,19 +54,15 @@ void PGMBreader::readFile(){
 		//Read in a char then conver to int
 		fileStream >> cur;
 		current = cur;
-		cout << "Current: " << current << endl;
 
 		if(current != 0){
 			//Add value to data
 			unsigned int pushBack = 8 * (3-(i%4));
-			cout << "Pushing Back(# bits): " << pushBack << endl;
 			unsigned int valueToAdd = current << pushBack;
-			cout << "Adding: " << valueToAdd << " To: " << runningHeaderValue << endl;
 			runningHeaderValue += valueToAdd;
 		}
 		if( (i+1) % headerSize == 0){
 			//Finalize the data
-			cout << "Header: " << runningHeaderValue << "\n" << endl;
 			fileData.push_back(runningHeaderValue);
 			runningHeaderValue = 0;
 		}
