@@ -1,10 +1,11 @@
 INC_WRITER = writer
 INC_READER = reader
+ASSIGNMENT = pa3
 CC=g++
 CFLAGS=-c -Wall -std=c++98 -pedantic-errors -I $(INC_WRITER) -I $(INC_READER)
 
 PA: main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o
-		$(CC) main.o PGMreader.o PGMAreader.o PGMBreader.o PGM.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o -o pa3
+		$(CC) main.o PGMreader.o PGMAreader.o PGMBreader.o PGM.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o -o $(ASSIGNMENT)
 
 main.o: main.cpp $(INC_READER)/PGMreader.h PGM.h PGMscale.h $(INC_WRITER)/PGMwriter.h
 		$(CC) $(CFLAGS) main.cpp
@@ -34,4 +35,7 @@ PGMBreader.o: $(INC_READER)/PGMBreader.cpp $(INC_READER)/PGMBreader.h
 		$(CC) $(CFLAGS)  $(INC_READER)/PGMBreader.cpp
 
 tar: 
-		tar -cf PA3.tar *.h *.cpp reader/ writer/ Makefile
+		tar -cf $(ASSIGNMENT).tar *.h *.cpp reader/ writer/ Makefile
+
+clean:
+		rm *.o $(ASSIGNMENT) $(ASSIGNMENT).tar
