@@ -32,3 +32,6 @@ PGMAreader.o: $(INC_READER)/PGMAreader.cpp $(INC_READER)/PGMAreader.h
 	
 PGMBreader.o: $(INC_READER)/PGMBreader.cpp $(INC_READER)/PGMBreader.h
 		$(CC) $(CFLAGS)  $(INC_READER)/PGMBreader.cpp
+
+tar: 
+		tar -cf PA3.tar *.h *.cpp reader/ writer/
