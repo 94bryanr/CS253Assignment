@@ -34,4 +34,4 @@ PGMBreader.o: $(INC_READER)/PGMBreader.cpp $(INC_READER)/PGMBreader.h
 		$(CC) $(CFLAGS)  $(INC_READER)/PGMBreader.cpp
 
 tar: 
-		tar -cf PA3.tar *.h *.cpp reader/ writer/
+		tar -cf PA3.tar *.h *.cpp reader/ writer/ Makefile
