@@ -17,6 +17,9 @@ PGM::PGM(unsigned int width, unsigned int height, unsigned int maxAllowedValue, 
 		exitWithError("Pixel data can not be empty.");
 	}
 	if (pixelData.size() != width * height){
+		cerr << width << endl;
+		cerr << height << endl;
+		cerr << pixelData.size() << endl;
 		exitWithError("Pixel data size does not match width and height specification.");
 	}
 
