@@ -4,7 +4,7 @@ CC=g++
 CFLAGS=-c -Wall -std=c++98 -pedantic-errors -I $(INC_WRITER) -I $(INC_READER)
 
 PA: main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o
-		$(CC) main.o PGMreader.o PGMAreader.o PGMBreader.o PGM.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o -o pa2
+		$(CC) main.o PGMreader.o PGMAreader.o PGMBreader.o PGM.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o -o pa3
 
 main.o: main.cpp $(INC_READER)/PGMreader.h PGM.h PGMscale.h $(INC_WRITER)/PGMwriter.h
 		$(CC) $(CFLAGS) main.cpp
