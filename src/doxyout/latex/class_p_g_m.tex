@@ -1,0 +1,261 @@
+\hypertarget{class_p_g_m}{}\section{P\+G\+M Class Reference}
+\label{class_p_g_m}\index{P\+G\+M@{P\+G\+M}}
+
+
+{\ttfamily \#include $<$P\+G\+M.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_g_m_a22851f227dab894763d2f9e84022e616}{P\+G\+M} (unsigned int \hyperlink{class_p_g_m_ae1aba034876f972708f51869f9b96473}{width}, unsigned int \hyperlink{class_p_g_m_a84af85a78cdb18c3f4e40c9668e5144f}{height}, unsigned int max, vector$<$ unsigned int $>$ \hyperlink{class_p_g_m_ab195067d405dd4dcb8071a10d98bd31d}{pixel\+Data})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_aebee6dce5ecd79b6d26d396a0c03a7df}{get\+Width} ()
+\begin{DoxyCompactList}\small\item\em Returns the width of the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_ae4eb22cbacf56d37373467a3496e66c5}{get\+Height} ()
+\begin{DoxyCompactList}\small\item\em Returns the height in pixels of the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_a445d28354d7674753f2e86987d54f0f1}{get\+Max\+Allowed\+Value} ()
+\begin{DoxyCompactList}\small\item\em Returns the maximum pixel value (0-\/255 inclusive) allowed in the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_af33403715c3080a827f92a366f9ace15}{get\+Total\+Pixels} ()
+\begin{DoxyCompactList}\small\item\em Returns height$\ast$width, or the total number of pixels in the image. \end{DoxyCompactList}\item 
+vector$<$ unsigned int $>$ \hyperlink{class_p_g_m_a877528d7f9ddfca9feea1cb10f748688}{get\+Pixel\+Data} ()
+\begin{DoxyCompactList}\small\item\em Returns a vector that represents each pixel in the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_aa49fefcbaf761e0c47780d6beda4bff7}{get\+Min\+Pixel} ()
+\begin{DoxyCompactList}\small\item\em Returns the smallest pixel value found in the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_a73122b56f85bafab9dde92e12cc2c7b9}{get\+Max\+Pixel} ()
+\begin{DoxyCompactList}\small\item\em Returns the largest pixel value found in the image. \end{DoxyCompactList}\item 
+double \hyperlink{class_p_g_m_af9ee26b93c22b57c2b36c7712e6197d5}{get\+Average\+Pixel} ()
+\begin{DoxyCompactList}\small\item\em Returns the average pixel value across the entire image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_p_g_m_a0f4d662e567907ea2c9cffe52afa61ad}{calculate\+Fields} ()
+\begin{DoxyCompactList}\small\item\em Fills in data about the image\+: average, max, min, total pixels. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_g_m_a1bae23f542fd94295967b63333417ece}{test\+For\+Invalid\+Data} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if all supplied data is valid. Checks each pixel, supplied width, height, and max. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_g_m_a586ac54af66abae83705beafb4bbada0}{exit\+With\+Error} (string error\+Message)
+\begin{DoxyCompactList}\small\item\em Exit the program\+: return -\/1 and throw an error message to cerr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{class_p_g_m_ae1aba034876f972708f51869f9b96473}{width}
+\begin{DoxyCompactList}\small\item\em Width in pixels of the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_a84af85a78cdb18c3f4e40c9668e5144f}{height}
+\begin{DoxyCompactList}\small\item\em Height in pixels of the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_a33ac46eb1f698bc6f6d4efec8440c6b7}{max\+Allowed\+Value}
+\begin{DoxyCompactList}\small\item\em Maximum allowed pixel value of the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_a01641571253c5af3bced03f9199c2a29}{total\+Pixels}
+\begin{DoxyCompactList}\small\item\em Total pixels in the image. \end{DoxyCompactList}\item 
+vector$<$ unsigned int $>$ \hyperlink{class_p_g_m_ab195067d405dd4dcb8071a10d98bd31d}{pixel\+Data}
+\begin{DoxyCompactList}\small\item\em Vector of integers (unsigned) that represent the pixels of the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_a5bc3b9f648daf505e5c8e86286c9a40f}{max\+Pixel}
+\begin{DoxyCompactList}\small\item\em The largest pixel found in the image. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_p_g_m_ac40e2ebf0447a03a5bd07a4dc5f32223}{min\+Pixel}
+\begin{DoxyCompactList}\small\item\em The smallest pixel found in the image. \end{DoxyCompactList}\item 
+double \hyperlink{class_p_g_m_a0fa0af24e638fc0393f33d0836930e95}{average\+Pixel}
+\begin{DoxyCompactList}\small\item\em The average pixel value in the image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_g_m_a22851f227dab894763d2f9e84022e616}{}\index{P\+G\+M@{P\+G\+M}!P\+G\+M@{P\+G\+M}}
+\index{P\+G\+M@{P\+G\+M}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{P\+G\+M}]{\setlength{\rightskip}{0pt plus 5cm}P\+G\+M\+::\+P\+G\+M (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{width, }
+\item[{unsigned int}]{height, }
+\item[{unsigned int}]{max, }
+\item[{vector$<$ unsigned int $>$}]{pixel\+Data}
+\end{DoxyParamCaption}
+)}\label{class_p_g_m_a22851f227dab894763d2f9e84022e616}
+
+
+Constructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_g_m_a0f4d662e567907ea2c9cffe52afa61ad}{}\index{P\+G\+M@{P\+G\+M}!calculate\+Fields@{calculate\+Fields}}
+\index{calculate\+Fields@{calculate\+Fields}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{calculate\+Fields}]{\setlength{\rightskip}{0pt plus 5cm}void P\+G\+M\+::calculate\+Fields (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_a0f4d662e567907ea2c9cffe52afa61ad}
+
+
+Fills in data about the image\+: average, max, min, total pixels. 
+
+\hypertarget{class_p_g_m_a586ac54af66abae83705beafb4bbada0}{}\index{P\+G\+M@{P\+G\+M}!exit\+With\+Error@{exit\+With\+Error}}
+\index{exit\+With\+Error@{exit\+With\+Error}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{exit\+With\+Error}]{\setlength{\rightskip}{0pt plus 5cm}void P\+G\+M\+::exit\+With\+Error (
+\begin{DoxyParamCaption}
+\item[{string}]{error\+Message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_a586ac54af66abae83705beafb4bbada0}
+
+
+Exit the program\+: return -\/1 and throw an error message to cerr. 
+
+\hypertarget{class_p_g_m_af9ee26b93c22b57c2b36c7712e6197d5}{}\index{P\+G\+M@{P\+G\+M}!get\+Average\+Pixel@{get\+Average\+Pixel}}
+\index{get\+Average\+Pixel@{get\+Average\+Pixel}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{get\+Average\+Pixel}]{\setlength{\rightskip}{0pt plus 5cm}double P\+G\+M\+::get\+Average\+Pixel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_p_g_m_af9ee26b93c22b57c2b36c7712e6197d5}
+
+
+Returns the average pixel value across the entire image. 
+
+\hypertarget{class_p_g_m_ae4eb22cbacf56d37373467a3496e66c5}{}\index{P\+G\+M@{P\+G\+M}!get\+Height@{get\+Height}}
+\index{get\+Height@{get\+Height}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{get\+Height}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::get\+Height (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_p_g_m_ae4eb22cbacf56d37373467a3496e66c5}
+
+
+Returns the height in pixels of the image. 
+
+\hypertarget{class_p_g_m_a445d28354d7674753f2e86987d54f0f1}{}\index{P\+G\+M@{P\+G\+M}!get\+Max\+Allowed\+Value@{get\+Max\+Allowed\+Value}}
+\index{get\+Max\+Allowed\+Value@{get\+Max\+Allowed\+Value}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{get\+Max\+Allowed\+Value}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::get\+Max\+Allowed\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_p_g_m_a445d28354d7674753f2e86987d54f0f1}
+
+
+Returns the maximum pixel value (0-\/255 inclusive) allowed in the image. 
+
+\hypertarget{class_p_g_m_a73122b56f85bafab9dde92e12cc2c7b9}{}\index{P\+G\+M@{P\+G\+M}!get\+Max\+Pixel@{get\+Max\+Pixel}}
+\index{get\+Max\+Pixel@{get\+Max\+Pixel}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{get\+Max\+Pixel}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::get\+Max\+Pixel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_p_g_m_a73122b56f85bafab9dde92e12cc2c7b9}
+
+
+Returns the largest pixel value found in the image. 
+
+\hypertarget{class_p_g_m_aa49fefcbaf761e0c47780d6beda4bff7}{}\index{P\+G\+M@{P\+G\+M}!get\+Min\+Pixel@{get\+Min\+Pixel}}
+\index{get\+Min\+Pixel@{get\+Min\+Pixel}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{get\+Min\+Pixel}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::get\+Min\+Pixel (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_p_g_m_aa49fefcbaf761e0c47780d6beda4bff7}
+
+
+Returns the smallest pixel value found in the image. 
+
+\hypertarget{class_p_g_m_a877528d7f9ddfca9feea1cb10f748688}{}\index{P\+G\+M@{P\+G\+M}!get\+Pixel\+Data@{get\+Pixel\+Data}}
+\index{get\+Pixel\+Data@{get\+Pixel\+Data}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{get\+Pixel\+Data}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ unsigned int $>$ P\+G\+M\+::get\+Pixel\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_p_g_m_a877528d7f9ddfca9feea1cb10f748688}
+
+
+Returns a vector that represents each pixel in the image. 
+
+\hypertarget{class_p_g_m_af33403715c3080a827f92a366f9ace15}{}\index{P\+G\+M@{P\+G\+M}!get\+Total\+Pixels@{get\+Total\+Pixels}}
+\index{get\+Total\+Pixels@{get\+Total\+Pixels}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{get\+Total\+Pixels}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::get\+Total\+Pixels (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_p_g_m_af33403715c3080a827f92a366f9ace15}
+
+
+Returns height$\ast$width, or the total number of pixels in the image. 
+
+\hypertarget{class_p_g_m_aebee6dce5ecd79b6d26d396a0c03a7df}{}\index{P\+G\+M@{P\+G\+M}!get\+Width@{get\+Width}}
+\index{get\+Width@{get\+Width}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{get\+Width}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::get\+Width (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_p_g_m_aebee6dce5ecd79b6d26d396a0c03a7df}
+
+
+Returns the width of the image. 
+
+\hypertarget{class_p_g_m_a1bae23f542fd94295967b63333417ece}{}\index{P\+G\+M@{P\+G\+M}!test\+For\+Invalid\+Data@{test\+For\+Invalid\+Data}}
+\index{test\+For\+Invalid\+Data@{test\+For\+Invalid\+Data}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{test\+For\+Invalid\+Data}]{\setlength{\rightskip}{0pt plus 5cm}void P\+G\+M\+::test\+For\+Invalid\+Data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_a1bae23f542fd94295967b63333417ece}
+
+
+Checks to see if all supplied data is valid. Checks each pixel, supplied width, height, and max. 
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_g_m_a0fa0af24e638fc0393f33d0836930e95}{}\index{P\+G\+M@{P\+G\+M}!average\+Pixel@{average\+Pixel}}
+\index{average\+Pixel@{average\+Pixel}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{average\+Pixel}]{\setlength{\rightskip}{0pt plus 5cm}double P\+G\+M\+::average\+Pixel\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_a0fa0af24e638fc0393f33d0836930e95}
+
+
+The average pixel value in the image. 
+
+\hypertarget{class_p_g_m_a84af85a78cdb18c3f4e40c9668e5144f}{}\index{P\+G\+M@{P\+G\+M}!height@{height}}
+\index{height@{height}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{height}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::height\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_a84af85a78cdb18c3f4e40c9668e5144f}
+
+
+Height in pixels of the image. 
+
+\hypertarget{class_p_g_m_a33ac46eb1f698bc6f6d4efec8440c6b7}{}\index{P\+G\+M@{P\+G\+M}!max\+Allowed\+Value@{max\+Allowed\+Value}}
+\index{max\+Allowed\+Value@{max\+Allowed\+Value}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{max\+Allowed\+Value}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::max\+Allowed\+Value\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_a33ac46eb1f698bc6f6d4efec8440c6b7}
+
+
+Maximum allowed pixel value of the image. 
+
+\hypertarget{class_p_g_m_a5bc3b9f648daf505e5c8e86286c9a40f}{}\index{P\+G\+M@{P\+G\+M}!max\+Pixel@{max\+Pixel}}
+\index{max\+Pixel@{max\+Pixel}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{max\+Pixel}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::max\+Pixel\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_a5bc3b9f648daf505e5c8e86286c9a40f}
+
+
+The largest pixel found in the image. 
+
+\hypertarget{class_p_g_m_ac40e2ebf0447a03a5bd07a4dc5f32223}{}\index{P\+G\+M@{P\+G\+M}!min\+Pixel@{min\+Pixel}}
+\index{min\+Pixel@{min\+Pixel}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{min\+Pixel}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::min\+Pixel\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_ac40e2ebf0447a03a5bd07a4dc5f32223}
+
+
+The smallest pixel found in the image. 
+
+\hypertarget{class_p_g_m_ab195067d405dd4dcb8071a10d98bd31d}{}\index{P\+G\+M@{P\+G\+M}!pixel\+Data@{pixel\+Data}}
+\index{pixel\+Data@{pixel\+Data}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{pixel\+Data}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$unsigned int$>$ P\+G\+M\+::pixel\+Data\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_ab195067d405dd4dcb8071a10d98bd31d}
+
+
+Vector of integers (unsigned) that represent the pixels of the image. 
+
+\hypertarget{class_p_g_m_a01641571253c5af3bced03f9199c2a29}{}\index{P\+G\+M@{P\+G\+M}!total\+Pixels@{total\+Pixels}}
+\index{total\+Pixels@{total\+Pixels}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{total\+Pixels}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::total\+Pixels\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_a01641571253c5af3bced03f9199c2a29}
+
+
+Total pixels in the image. 
+
+\hypertarget{class_p_g_m_ae1aba034876f972708f51869f9b96473}{}\index{P\+G\+M@{P\+G\+M}!width@{width}}
+\index{width@{width}!P\+G\+M@{P\+G\+M}}
+\subsubsection[{width}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int P\+G\+M\+::width\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_m_ae1aba034876f972708f51869f9b96473}
+
+
+Width in pixels of the image. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_p_g_m_8h}{P\+G\+M.\+h}\item 
+\hyperlink{_p_g_m_8cpp}{P\+G\+M.\+cpp}\end{DoxyCompactItemize}

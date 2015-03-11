@@ -1,8 +1,4 @@
 #include "PGM.h"
-#ifndef USING_STDLIB
-    #include <stdlib.h>
-    #define USING_STDLIB
-#endif
 
 using std::cout;
 using std::endl;
@@ -13,13 +9,10 @@ using std::cerr;
 PGM::PGM(unsigned int width, unsigned int height, unsigned int maxAllowedValue, vector<unsigned int> pixelData) :
 	width(width), height(height), maxAllowedValue(maxAllowedValue), pixelData(pixelData){
 
-	if (pixelData.size() == 0){
-		exitWithError("Pixel data can not be empty.");
-	}
 	if (pixelData.size() != width * height){
-		cerr << width << endl;
-		cerr << height << endl;
-		cerr << pixelData.size() << endl;
+		cerr << "Width: " <<  width << endl;
+		cerr << "Height: " << height << endl;
+		cerr << "Pixels: " << pixelData.size() << endl;
 		exitWithError("Pixel data size does not match width and height specification.");
 	}
 
@@ -38,10 +31,10 @@ void PGM::testForInvalidData(){
 	}
 
 	//width/height
-	if(width < 1){
+	if(width < 0){
 		exitWithError("Width is out of range.");
 	}
-	if(height < 1){
+	if(height < 0){
 		exitWithError("Height is out of range.");
 	}
 

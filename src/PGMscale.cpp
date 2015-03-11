@@ -1,8 +1,7 @@
+#ifndef PGMSCALE
+#define PGMSCALE
+
 #include "PGMscale.h"
-#ifndef USING_STDLIB
-    #include <stdlib.h>
-    #define USING_STDLIB
-#endif
 
 using std::endl;
 using std::cerr;
@@ -45,3 +44,5 @@ void PGMscale::exitWithError(string errorMessage){
 	cerr << "Error: " << errorMessage << endl;
 	exit(-1);
 }
+
+#endif

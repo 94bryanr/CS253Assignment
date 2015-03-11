@@ -1,3 +1,6 @@
+#ifndef PGM_H
+#define PGM_H
+
 #include<iostream>
 #include<vector>
 
@@ -27,9 +30,9 @@ class PGM{
 	
 	private:
 		/// Width in pixels of the image.
-		unsigned int width;
+		int width;
 		/// Height in pixels of the image.
-		unsigned int height;
+		int height;
 		/// Maximum allowed pixel value of the image.
 		unsigned int maxAllowedValue;
 		/// Total pixels in the image.
@@ -49,3 +52,5 @@ class PGM{
 		/// Exit the program: return -1 and throw an error message to cerr.
 		void exitWithError(string errorMessage);
 };
+
+#endif

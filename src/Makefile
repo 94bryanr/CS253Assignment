@@ -1,13 +1,11 @@
-INC_WRITER = writer
-INC_READER = reader
-ASSIGNMENT = pa3
-CC=g++
-CFLAGS=-c -Wall -std=c++98 -pedantic-errors -I $(INC_WRITER) -I $(INC_READER)
+ASSIGNMENT = pa4
+CC= g++
+CFLAGS= -c -Wall -std=c++98 -pedantic-errors 
 
-PA: main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o
-		$(CC) main.o PGMreader.o PGMAreader.o PGMBreader.o PGM.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o -o $(ASSIGNMENT)
+PA: main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o PGMframer.o
+		$(CC) main.o PGMreader.o PGMAreader.o PGMBreader.o PGM.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o PGMframer.o -o $(ASSIGNMENT)
 
-main.o: main.cpp $(INC_READER)/PGMreader.h PGM.h PGMscale.h $(INC_WRITER)/PGMwriter.h
+main.o: main.cpp PGMreader.h PGM.h PGMscale.h PGMwriter.h
 		$(CC) $(CFLAGS) main.cpp
 
 PGM.o: PGM.cpp PGM.h
@@ -16,26 +14,29 @@ PGM.o: PGM.cpp PGM.h
 PGMscale.o: PGMscale.cpp PGMscale.h
 		$(CC) $(CFLAGS) PGMscale.cpp
 
-PGMwriter.o: $(INC_WRITER)/PGMwriter.cpp $(INC_WRITER)/PGMwriter.h
-		$(CC) $(CFLAGS) $(INC_WRITER)/PGMwriter.cpp
+PGMframer.o: PGMframer.cpp PGMframer.h
+		$(CC) $(CFLAGS) PGMframer.cpp
 
-PGMAwriter.o: $(INC_WRITER)/PGMAwriter.cpp $(INC_WRITER)/PGMAwriter.h
-		$(CC) $(CFLAGS) $(INC_WRITER)/PGMAwriter.cpp
+PGMwriter.o: PGMwriter.cpp PGMwriter.h
+		$(CC) $(CFLAGS) PGMwriter.cpp
 
-PGMBwriter.o: $(INC_WRITER)/PGMBwriter.cpp $(INC_WRITER)/PGMBwriter.h
-		$(CC) $(CFLAGS) $(INC_WRITER)/PGMBwriter.cpp
+PGMAwriter.o: PGMAwriter.cpp PGMAwriter.h
+		$(CC) $(CFLAGS) PGMAwriter.cpp
 
-PGMreader.o: $(INC_READER)/PGMreader.cpp $(INC_READER)/PGMreader.h 
-		$(CC) $(CFLAGS) $(INC_READER)/PGMreader.cpp 
+PGMBwriter.o: PGMBwriter.cpp PGMBwriter.h
+		$(CC) $(CFLAGS) PGMBwriter.cpp
+
+PGMreader.o: PGMreader.cpp PGMreader.h 
+		$(CC) $(CFLAGS) PGMreader.cpp 
 	
-PGMAreader.o: $(INC_READER)/PGMAreader.cpp $(INC_READER)/PGMAreader.h
-		$(CC) $(CFLAGS)  $(INC_READER)/PGMAreader.cpp
+PGMAreader.o: PGMAreader.cpp PGMAreader.h
+		$(CC) $(CFLAGS)  PGMAreader.cpp
 	
-PGMBreader.o: $(INC_READER)/PGMBreader.cpp $(INC_READER)/PGMBreader.h
-		$(CC) $(CFLAGS)  $(INC_READER)/PGMBreader.cpp
+PGMBreader.o: PGMBreader.cpp PGMBreader.h
+		$(CC) $(CFLAGS)  PGMBreader.cpp
 
 tar: 
 		tar -cf $(ASSIGNMENT).tar *.h *.cpp reader/ writer/ Makefile
 
 clean:
-		rm *.o $(ASSIGNMENT) $(ASSIGNMENT).tar
+		rm *.o *.pgm $(ASSIGNMENT) $(ASSIGNMENT).tar

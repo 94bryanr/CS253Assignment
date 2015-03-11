@@ -1,9 +1,9 @@
+#ifndef PGMSCALE_H
+#define PGMSCALE_H
+
 #include <iostream>
-#ifndef USING_PGM
-	#define USING_PGM
-	#include "PGM.h"
-#endif
 #include <math.h>
+#include "PGM.h"
 
 class PGMscale{
 	public:
@@ -19,3 +19,5 @@ class PGMscale{
 		/// Exit the operating system with a -1 and output error message to cerr.
 		void exitWithError(string errorMessage);
 };
+
+#endif

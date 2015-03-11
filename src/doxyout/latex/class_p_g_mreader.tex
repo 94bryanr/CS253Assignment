@@ -1,0 +1,112 @@
+\hypertarget{class_p_g_mreader}{}\section{P\+G\+Mreader Class Reference}
+\label{class_p_g_mreader}\index{P\+G\+Mreader@{P\+G\+Mreader}}
+
+
+{\ttfamily \#include $<$P\+G\+Mreader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_p_g_mreader_a8169831b7c71a4ac6857d926637ee373}{P\+G\+Mreader} (string filename)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_p_g_m}{P\+G\+M} \hyperlink{class_p_g_mreader_a7a9d1eddef8516e1b50715295498ec41}{get\+P\+G\+M} ()
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{class_p_g_m}{P\+G\+M} file object after reading in A\+S\+C\+I\+I \hyperlink{class_p_g_m}{P\+G\+M} file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_p_g_mreader_a9fed4fd38b10e7b39153c4994b3ecc8a}{test\+Magic\+Number} ()
+\begin{DoxyCompactList}\small\item\em Check to see if \textquotesingle{}P2\textquotesingle{} are the first characters of the file. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_g_mreader_adc7887bcdafb2350a5b15e2c0108d273}{read\+File} ()
+\begin{DoxyCompactList}\small\item\em Opens the filestream and constructs the file\+Data vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_p_g_mreader_a055a02fb4d6b4bfcdfc2dba57db734ec}{exit\+With\+Error} (string error\+Message)
+\begin{DoxyCompactList}\small\item\em Exits the program by returning -\/1 to the system and outputting an error to cerr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+fstream \hyperlink{class_p_g_mreader_a427a333b26ad8fe7efd21767293398fd}{file\+Stream}
+\begin{DoxyCompactList}\small\item\em File stream, opens file passed in to constructor. \end{DoxyCompactList}\item 
+vector$<$ int $>$ \hyperlink{class_p_g_mreader_a55b877efdff0c8ed1f92210c0e278cd7}{file\+Data}
+\begin{DoxyCompactList}\small\item\em Vector of A\+L\+L file data, including width, height, max. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_p_g_mreader_a8169831b7c71a4ac6857d926637ee373}{}\index{P\+G\+Mreader@{P\+G\+Mreader}!P\+G\+Mreader@{P\+G\+Mreader}}
+\index{P\+G\+Mreader@{P\+G\+Mreader}!P\+G\+Mreader@{P\+G\+Mreader}}
+\subsubsection[{P\+G\+Mreader}]{\setlength{\rightskip}{0pt plus 5cm}P\+G\+Mreader\+::\+P\+G\+Mreader (
+\begin{DoxyParamCaption}
+\item[{string}]{filename}
+\end{DoxyParamCaption}
+)}\label{class_p_g_mreader_a8169831b7c71a4ac6857d926637ee373}
+
+
+Constructor. 
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_p_g_mreader_a055a02fb4d6b4bfcdfc2dba57db734ec}{}\index{P\+G\+Mreader@{P\+G\+Mreader}!exit\+With\+Error@{exit\+With\+Error}}
+\index{exit\+With\+Error@{exit\+With\+Error}!P\+G\+Mreader@{P\+G\+Mreader}}
+\subsubsection[{exit\+With\+Error}]{\setlength{\rightskip}{0pt plus 5cm}void P\+G\+Mreader\+::exit\+With\+Error (
+\begin{DoxyParamCaption}
+\item[{string}]{error\+Message}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_mreader_a055a02fb4d6b4bfcdfc2dba57db734ec}
+
+
+Exits the program by returning -\/1 to the system and outputting an error to cerr. 
+
+\hypertarget{class_p_g_mreader_a7a9d1eddef8516e1b50715295498ec41}{}\index{P\+G\+Mreader@{P\+G\+Mreader}!get\+P\+G\+M@{get\+P\+G\+M}}
+\index{get\+P\+G\+M@{get\+P\+G\+M}!P\+G\+Mreader@{P\+G\+Mreader}}
+\subsubsection[{get\+P\+G\+M}]{\setlength{\rightskip}{0pt plus 5cm}{\bf P\+G\+M} P\+G\+Mreader\+::get\+P\+G\+M (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_p_g_mreader_a7a9d1eddef8516e1b50715295498ec41}
+
+
+Get the \hyperlink{class_p_g_m}{P\+G\+M} file object after reading in A\+S\+C\+I\+I \hyperlink{class_p_g_m}{P\+G\+M} file. 
+
+\hypertarget{class_p_g_mreader_adc7887bcdafb2350a5b15e2c0108d273}{}\index{P\+G\+Mreader@{P\+G\+Mreader}!read\+File@{read\+File}}
+\index{read\+File@{read\+File}!P\+G\+Mreader@{P\+G\+Mreader}}
+\subsubsection[{read\+File}]{\setlength{\rightskip}{0pt plus 5cm}void P\+G\+Mreader\+::read\+File (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_mreader_adc7887bcdafb2350a5b15e2c0108d273}
+
+
+Opens the filestream and constructs the file\+Data vector. 
+
+\hypertarget{class_p_g_mreader_a9fed4fd38b10e7b39153c4994b3ecc8a}{}\index{P\+G\+Mreader@{P\+G\+Mreader}!test\+Magic\+Number@{test\+Magic\+Number}}
+\index{test\+Magic\+Number@{test\+Magic\+Number}!P\+G\+Mreader@{P\+G\+Mreader}}
+\subsubsection[{test\+Magic\+Number}]{\setlength{\rightskip}{0pt plus 5cm}void P\+G\+Mreader\+::test\+Magic\+Number (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_mreader_a9fed4fd38b10e7b39153c4994b3ecc8a}
+
+
+Check to see if \textquotesingle{}P2\textquotesingle{} are the first characters of the file. 
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_p_g_mreader_a55b877efdff0c8ed1f92210c0e278cd7}{}\index{P\+G\+Mreader@{P\+G\+Mreader}!file\+Data@{file\+Data}}
+\index{file\+Data@{file\+Data}!P\+G\+Mreader@{P\+G\+Mreader}}
+\subsubsection[{file\+Data}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ P\+G\+Mreader\+::file\+Data\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_mreader_a55b877efdff0c8ed1f92210c0e278cd7}
+
+
+Vector of A\+L\+L file data, including width, height, max. 
+
+\hypertarget{class_p_g_mreader_a427a333b26ad8fe7efd21767293398fd}{}\index{P\+G\+Mreader@{P\+G\+Mreader}!file\+Stream@{file\+Stream}}
+\index{file\+Stream@{file\+Stream}!P\+G\+Mreader@{P\+G\+Mreader}}
+\subsubsection[{file\+Stream}]{\setlength{\rightskip}{0pt plus 5cm}fstream P\+G\+Mreader\+::file\+Stream\hspace{0.3cm}{\ttfamily [private]}}\label{class_p_g_mreader_a427a333b26ad8fe7efd21767293398fd}
+
+
+File stream, opens file passed in to constructor. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{_p_g_mreader_8h}{P\+G\+Mreader.\+h}\end{DoxyCompactItemize}
