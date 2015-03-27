@@ -36,7 +36,7 @@ PGMBreader.o: PGMBreader.cpp PGMBreader.h
 		$(CC) $(CFLAGS)  PGMBreader.cpp
 
 tar: 
-		tar -cf $(ASSIGNMENT).tar *.h *.cpp reader/ writer/ Makefile
+		tar -cf $(ASSIGNMENT).tar *.h *.cpp Makefile
 
 clean:
-		rm *.o *.pgm $(ASSIGNMENT) $(ASSIGNMENT).tar
+		rm *.o $(ASSIGNMENT) $(ASSIGNMENT).tar
