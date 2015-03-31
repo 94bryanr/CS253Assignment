@@ -6,9 +6,8 @@ using std::endl;
 using std::ifstream;
 using std::cerr;
 
+/// Construct a PGMreader, pass in a filename
 PGMreader::PGMreader(string filename){
-	//Check what reader to use
-	
 	//Open file
 	fstream fileStream;
 	fileStream.open(filename.c_str(), std::ios_base::in);
@@ -16,6 +15,8 @@ PGMreader::PGMreader(string filename){
 		cerr << "Error: File can not be opened" << endl;
 		exit(-1);
 	}
+
+	//Check what reader to use
 	//Find magic numbers
 	char firstChar;
 	char secondChar;
@@ -35,6 +36,7 @@ PGMreader::PGMreader(string filename){
 	}
 }
 
+/// Get PGM object back from PGMreader
 PGM PGMreader::getPGM(){
 	if (chosenReader == 'a'){
 		return readerA -> getPGM();
