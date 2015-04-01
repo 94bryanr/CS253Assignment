@@ -1,6 +1,10 @@
 #ifndef KeyPoint_H
 #define KeyPoint_H
 
+#include <iostream>
+using std::endl;
+using std::cout;
+
 class KeyPoint{
 	public:
 		KeyPoint(unsigned int originalX, unsigned int originalY,
@@ -9,8 +13,8 @@ class KeyPoint{
 		unsigned int getOriginalY();
 		unsigned int getDestinationX();
 		unsigned int getDestinationY();
-		unsigned int getDifferenceX();
-		unsigned int getDifferenceY();
+		int getDifferenceX();
+		int getDifferenceY();
 	private:
 		unsigned int originalX;
 		unsigned int originalY;

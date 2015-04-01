@@ -46,6 +46,7 @@ int main(int argc, char* argv[]){
 	// Morph image
 	Morph morph (mapping.getKeyPoints(), pgm);
 	pgm = morph.getPGM();
+	cout << "Morphed " << pgm.at(0,0) << endl;
 	
 	//Output files
 	if (outputLocation.substr(outputLocation.length()-5).compare(".pgma" ) == 0){

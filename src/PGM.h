@@ -3,9 +3,11 @@
 
 #include<iostream>
 #include<vector>
+#include"ExitWithError.h"
 
 using std::vector;
 using std::string;
+using std::to_string;
 
 class PGM{
 	public:
@@ -27,6 +29,10 @@ class PGM{
 		unsigned int getMaxPixel();
 		/// Returns the average pixel value across the entire image.
 		double getAveragePixel();
+		/// Get pixel at location x,y
+		unsigned int at(unsigned int x, unsigned int y);
+		/// Set the pixel at location(x,y) to newValue
+		void setPixel(unsigned int x, unsigned int y, unsigned int newValue);
 	
 	private:
 		/// Width in pixels of the image.
@@ -49,8 +55,8 @@ class PGM{
 		unsigned int minPixel;
 		/// The average pixel value in the image.
 		double averagePixel;
-		/// Exit the program: return -1 and throw an error message to cerr.
-		void exitWithError(string errorMessage);
+		/// Get array location from (x,y)
+		unsigned int getArrayLocation(unsigned int x, unsigned int y);
 };
 
 #endif

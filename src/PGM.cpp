@@ -8,14 +8,7 @@ using std::cerr;
 
 PGM::PGM(unsigned int width, unsigned int height, unsigned int maxAllowedValue, vector<unsigned int> pixelData) :
 	width(width), height(height), maxAllowedValue(maxAllowedValue), pixelData(pixelData){
-
-	if (pixelData.size() != width * height){
-		cerr << "Width: " <<  width << endl;
-		cerr << "Height: " << height << endl;
-		cerr << "Pixels: " << pixelData.size() << endl;
-		exitWithError("Pixel data size does not match width and height specification.");
-	}
-
+	
 	testForInvalidData();
 	calculateFields();	
 }
@@ -27,23 +20,31 @@ void PGM::testForInvalidData(){
 		maxAllowedValue = 255;
 	}
 	else if(maxAllowedValue < 1 || 256 < maxAllowedValue){
-		exitWithError("MaxAllowedValue is out of range.");
+		ExitWithError("MaxAllowedValue is out of range.");
 	}
 
 	//width/height
 	if(width < 0){
-		exitWithError("Width is out of range.");
+		ExitWithError("Width is out of range.");
 	}
 	if(height < 0){
-		exitWithError("Height is out of range.");
+		ExitWithError("Height is out of range.");
 	}
 
 	//pixels
 	for(unsigned int currentPixel = 0; currentPixel < pixelData.size(); currentPixel++){
 		//cast pixelData[currentPixel] to int because unsigned int is never < 0
 		if ((int)pixelData[currentPixel] < 0 || pixelData[currentPixel] > maxAllowedValue){
-			exitWithError("Pixel value out of range.");
+			ExitWithError("Pixel value out of range.");
 		}
+	}
+
+	//pixel data size
+	if (pixelData.size() != width * height){
+		cerr << "Width: " <<  width << endl;
+		cerr << "Height: " << height << endl;
+		cerr << "Pixels: " << pixelData.size() << endl;
+		ExitWithError("Pixel data size does not match width and height specification.");
 	}
 }
 
@@ -73,6 +74,29 @@ void PGM::calculateFields(){
 	averagePixel = (double)runningTotal/(double)totalPixels;
 }
 
+unsigned int PGM::at(unsigned int x, unsigned int y){
+	if(x > width-1)
+		ExitWithError("PGM at, x value out of bounds");
+	if(y > height-1)
+		ExitWithError("PGM at, y value out of bounds");
+	return pixelData[getArrayLocation(x,y)];
+}
+
+void PGM::setPixel(unsigned int x, unsigned int y, unsigned int newValue){
+	if (newValue > maxAllowedValue)
+		ExitWithError("Set Pixel, new value out of range: " + to_string(newValue));
+	cout << "Setting (" << x << "," << y << "):" << at(x,y);
+	cout << " To: " << newValue << endl;
+	pixelData[getArrayLocation(x,y)] = newValue;
+}
+
+unsigned int PGM::getArrayLocation(unsigned int x, unsigned int y){
+	if(x > width-1)
+		ExitWithError("GetArrayLocation, x coordinate out of range: " + to_string(x));
+	else if(y > height-1)
+		ExitWithError("GetArrayLocation, y coordinate out of range: " + to_string(y));
+ 	return (width*y) + x;
+}
 
 unsigned int PGM::getHeight(){
 	return height;
@@ -104,9 +128,4 @@ unsigned int PGM::getMinPixel(){
 
 double PGM::getAveragePixel(){
 	return averagePixel;
-}
-
-void PGM::exitWithError(string errorMessage){
-	cerr << "Error: " << errorMessage << endl;
-	exit(-1);
 }

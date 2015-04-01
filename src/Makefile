@@ -1,21 +1,16 @@
-ASSIGNMENT = pa4
+ASSIGNMENT = pa5
 CC= g++
 CFLAGS= -c -Wall -std=c++98 -pedantic-errors 
+OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o
 
-PA: main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o PGMframer.o
-		$(CC) main.o PGMreader.o PGMAreader.o PGMBreader.o PGM.o PGMscale.o PGMwriter.o PGMAwriter.o PGMBwriter.o PGMframer.o -o $(ASSIGNMENT)
+PA: $(OBJFILES)
+		$(CC) $(OBJFILES) -o $(ASSIGNMENT)
 
-main.o: main.cpp PGMreader.h PGM.h PGMscale.h PGMwriter.h
+main.o: main.cpp 
 		$(CC) $(CFLAGS) main.cpp
 
 PGM.o: PGM.cpp PGM.h
 		$(CC) $(CFLAGS) PGM.cpp
-
-PGMscale.o: PGMscale.cpp PGMscale.h
-		$(CC) $(CFLAGS) PGMscale.cpp
-
-PGMframer.o: PGMframer.cpp PGMframer.h
-		$(CC) $(CFLAGS) PGMframer.cpp
 
 PGMwriter.o: PGMwriter.cpp PGMwriter.h
 		$(CC) $(CFLAGS) PGMwriter.cpp
@@ -30,13 +25,25 @@ PGMreader.o: PGMreader.cpp PGMreader.h
 		$(CC) $(CFLAGS) PGMreader.cpp 
 	
 PGMAreader.o: PGMAreader.cpp PGMAreader.h
-		$(CC) $(CFLAGS)  PGMAreader.cpp
+		$(CC) $(CFLAGS) PGMAreader.cpp
 	
 PGMBreader.o: PGMBreader.cpp PGMBreader.h
-		$(CC) $(CFLAGS)  PGMBreader.cpp
+		$(CC) $(CFLAGS) PGMBreader.cpp
+
+KeyPoint.o: KeyPoint.cpp KeyPoint.h
+		$(CC) $(CFLAGS) KeyPoint.cpp
+
+Mapping.o: Mapping.cpp Mapping.h
+		$(CC) $(CFLAGS) Mapping.cpp
+
+ExitWithError.o: ExitWithError.cpp ExitWithError.h
+		$(CC) $(CFLAGS) ExitWithError.cpp
+	
+Morph.o: Morph.cpp Morph.h
+		$(CC) $(CFLAGS) Morph.cpp
 
 tar: 
 		tar -cf $(ASSIGNMENT).tar *.h *.cpp Makefile
 
 clean:
-		rm *.o $(ASSIGNMENT) $(ASSIGNMENT).tar
+		rm *.o *.pgm $(ASSIGNMENT) $(ASSIGNMENT).tar
