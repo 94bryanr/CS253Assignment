@@ -6,6 +6,7 @@
 #include<string>
 #include<vector>
 #include "PGM.h"
+#include "ExitWithError.h"
 
 using std::fstream;
 using std::string;
@@ -27,8 +28,6 @@ class PGMAreader{
 		void testMagicNumber();
 		/// Opens the filestream and constructs the fileData vector.
 		void readFile();
-		/// Exits the program by returning -1 to the system and outputting an error to cerr.
-		void exitWithError(string errorMessage);
 };
 
 #endif

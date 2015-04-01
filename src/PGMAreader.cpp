@@ -5,12 +5,11 @@
 
 using std::endl;
 using std::ifstream;
-using std::cerr;
 
 PGMAreader::PGMAreader(string filename){ 
 	fileStream.open(filename.c_str(), std::ios_base::in);
 	if(!fileStream){
-		exitWithError("File can not be opened");
+		ExitWithError("File can not be opened");
 	}
 
 	testMagicNumber();
@@ -36,7 +35,7 @@ void PGMAreader::testMagicNumber(){
 	fileStream.get(secondChar);
 	bool correctMagicNumbers = (firstChar == 'P' && secondChar == '2');
 	if(!correctMagicNumbers){
-		exitWithError("File does not have magic numbers!");
+		ExitWithError("File does not have magic numbers!");
 	}
 }
 
@@ -55,19 +54,14 @@ void PGMAreader::readFile(){
 				//We have read in a comment
 				//Check for comment delimiter 
 				if(comment[0] != '#'){
-					exitWithError("Incorrect comment formatting");
+					ExitWithError("Incorrect comment formatting");
 				}
 			}
 			else{
-				exitWithError("Unknown input value");
+				ExitWithError("Unknown input value");
 			}
 		}
 	}
-}
-
-void PGMAreader::exitWithError(string errorMessage){
-	cerr << "Error: " << errorMessage << endl;
-	exit(-1);
 }
 
 #endif

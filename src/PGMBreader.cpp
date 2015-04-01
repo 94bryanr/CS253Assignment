@@ -4,14 +4,13 @@
 
 using std::endl;
 using std::ifstream;
-using std::cerr;
 using std::cout;
 
 PGMBreader::PGMBreader(string filename){ 
 	fileStream.open(filename.c_str(), std::ios_base::in | std::ios_base::binary);
 	fileStream.unsetf(std::ios_base::skipws);
 	if(!fileStream){
-		exitWithError("File can not be opened");
+		ExitWithError("File can not be opened");
 	}
 
 	testMagicNumber();
@@ -36,7 +35,7 @@ void PGMBreader::testMagicNumber(){
 	fileStream.get(secondChar);
 	bool correctMagicNumbers = (firstChar == 'P' && secondChar == '5');
 	if(!correctMagicNumbers){
-		exitWithError("File does not have magic numbers!");
+		ExitWithError("File does not have magic numbers!");
 	}
 }
 
@@ -73,11 +72,6 @@ void PGMBreader::readFile(){
 			fileData.push_back(current);
 		}
 	}
-}
-
-void PGMBreader::exitWithError(string errorMessage){
-	cerr << "Error: " << errorMessage << endl;
-	exit(-1);
 }
 
 #endif

@@ -4,7 +4,6 @@
 #include "PGMBwriter.h"
 
 using std::endl;
-using std::cerr;
 using std::fstream;
 
 PGMBwriter::PGMBwriter(PGM pgm, string fileLocation)
@@ -15,7 +14,7 @@ PGMBwriter::PGMBwriter(PGM pgm, string fileLocation)
 void PGMBwriter::write(){
 	fstream outputStream(fileLocation.c_str(), std::ios::out | std::ios::binary);
 	if(!outputStream){
-		exitWithError("Can not open file for writing");
+		ExitWithError("Can not open file for writing");
 	}
 
 	//Magic Numbers
@@ -38,11 +37,6 @@ void PGMBwriter::write(){
 		outputStream << (char)pixelData[location];
 	}
 	outputStream.flush();
-}
-
-void PGMBwriter::exitWithError(string errorMessage){
-	cerr << "Error: " << errorMessage << endl;
-	exit(-1);
 }
 
 #endif

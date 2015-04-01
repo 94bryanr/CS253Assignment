@@ -4,6 +4,7 @@
 #include <iostream>
 #include "PGM.h"
 #include <fstream>
+#include "ExitWithError.h"
 
 class PGMAwriter{
 	public:
@@ -17,8 +18,6 @@ class PGMAwriter{
 		PGM pgm;
 		/// Location to write output file to.
 		string fileLocation;
-		/// Exit operating system with -1 and output error to cerr.
-		void exitWithError(string errorMessage);
 };
 
 #endif

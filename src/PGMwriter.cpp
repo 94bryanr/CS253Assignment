@@ -4,7 +4,6 @@
 #include "PGMwriter.h"
 
 using std::endl;
-using std::cerr;
 using std::fstream;
 
 PGMwriter::PGMwriter(PGM pgm, string fileLocation) {
@@ -30,13 +29,8 @@ void PGMwriter::write(){
 		writerB->write();
 	}
 	else{
-		exitWithError("No writer chosen");
+		ExitWithError("No writer chosen");
 	}
-}
-
-void PGMwriter::exitWithError(string errorMessage){
-	cerr << "Error: " << errorMessage << endl;
-	exit(-1);
 }
 
 #endif

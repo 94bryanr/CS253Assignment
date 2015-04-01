@@ -4,7 +4,6 @@
 
 using std::endl;
 using std::ifstream;
-using std::cerr;
 
 /// Construct a PGMreader, pass in a filename
 PGMreader::PGMreader(string filename){
@@ -12,8 +11,7 @@ PGMreader::PGMreader(string filename){
 	fstream fileStream;
 	fileStream.open(filename.c_str(), std::ios_base::in);
 	if(!fileStream){
-		cerr << "Error: File can not be opened" << endl;
-		exit(-1);
+		ExitWithError("Error: File can not be opened");
 	}
 
 	//Check what reader to use
@@ -31,8 +29,7 @@ PGMreader::PGMreader(string filename){
 		chosenReader = 'b';
 	}
 	else{
-		cerr << "Error: Incorrect Filetype" << endl;
-		exit(-1);
+		ExitWithError("Error: Incorrect Filetype");
 	}
 }
 
@@ -45,8 +42,9 @@ PGM PGMreader::getPGM(){
 		return readerB -> getPGM();
 	}
 	else{
-		cerr << "Error: Incorrect Filetype" << endl;
-		exit(-1);
+		ExitWithError("Error: Incorrect Filetype");
+		// To get compiler to stop complaining
+		return readerA -> getPGM();
 	}
 }
 

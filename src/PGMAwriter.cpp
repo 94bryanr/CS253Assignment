@@ -5,7 +5,6 @@
 #include <stdlib.h>
 
 using std::endl;
-using std::cerr;
 using std::fstream;
 
 PGMAwriter::PGMAwriter(PGM pgm, string fileLocation)
@@ -16,7 +15,7 @@ PGMAwriter::PGMAwriter(PGM pgm, string fileLocation)
 void PGMAwriter::write(){
 	fstream outputStream(fileLocation.c_str(), std::ios::out);
 	if(!outputStream){
-		exitWithError("Can not open file for writing");
+		ExitWithError("Can not open file for writing");
 	}
 
 	//Magic Numbers
@@ -34,11 +33,6 @@ void PGMAwriter::write(){
 			outputStream << endl;
 		}
 	}
-}
-
-void PGMAwriter::exitWithError(string errorMessage){
-	cerr << "Error: " << errorMessage << endl;
-	exit(-1);
 }
 
 #endif

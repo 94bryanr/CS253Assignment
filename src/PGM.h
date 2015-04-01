@@ -7,7 +7,6 @@
 
 using std::vector;
 using std::string;
-using std::to_string;
 
 class PGM{
 	public:
@@ -36,9 +35,9 @@ class PGM{
 	
 	private:
 		/// Width in pixels of the image.
-		int width;
+		unsigned int width;
 		/// Height in pixels of the image.
-		int height;
+		unsigned int height;
 		/// Maximum allowed pixel value of the image.
 		unsigned int maxAllowedValue;
 		/// Total pixels in the image.

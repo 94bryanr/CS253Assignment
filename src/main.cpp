@@ -14,7 +14,6 @@ void exitWithError(string errorMessage);
 using std::cout;
 using std::endl;
 using std::vector;
-using std::cerr;
 using std::istringstream;
 
 int main(int argc, char* argv[]){
@@ -35,7 +34,7 @@ int main(int argc, char* argv[]){
 	Mapping mapping(inputKeyPoints);
 
 	vector<KeyPoint> keyVector = mapping.getKeyPoints();
-	for (int i = 0; i < keyVector.size(); i++){
+	for (unsigned long i = 0; i < keyVector.size(); i++){
 		cout << "OX: " << keyVector[i].getOriginalX() << endl;
 		cout << "OY: " << keyVector[i].getOriginalY() << endl;
 		cout << "DX: " << keyVector[i].getDestinationX() << endl;

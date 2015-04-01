@@ -2,7 +2,7 @@
 
 Mapping::Mapping(string filename){
 	cout << "Mapping Constructor" << endl;
-	fileStream.open(filename, std::ios_base::in);
+	fileStream.open(filename.c_str(), std::ios_base::in);
 	if (!fileStream){
 		ExitWithError("Bad KeyPoint File");
 	}

@@ -1,6 +1,6 @@
 ASSIGNMENT = pa5
 CC= g++
-CFLAGS= -c -Wall -std=c++98 -pedantic-errors 
+CFLAGS= -c -Wall -std=c++98 -pedantic-errors -Wsign-compare
 OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o
 
 PA: $(OBJFILES)

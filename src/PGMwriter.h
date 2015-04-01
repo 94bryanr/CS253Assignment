@@ -6,6 +6,7 @@
 #include <fstream>
 #include "PGMAwriter.h"
 #include "PGMBwriter.h"
+#include "ExitWithError.h"
 
 class PGMwriter{
 	public:
@@ -15,7 +16,6 @@ class PGMwriter{
 		void write();
 
 	private:
-		void exitWithError(string errorMessage);
 		PGMAwriter* writerA;
 		PGMBwriter* writerB;
 		char usingWriter;

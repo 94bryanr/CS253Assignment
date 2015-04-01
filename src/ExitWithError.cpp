@@ -1,6 +1,6 @@
 #include "ExitWithError.h"
 
 ExitWithError::ExitWithError(string errorMessage){
-	cout << errorMessage << endl;
+	cerr << errorMessage << endl;
 	exit(-1);
 }

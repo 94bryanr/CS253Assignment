@@ -17,8 +17,6 @@ class PGMBwriter{
 		PGM pgm;
 		/// Location to write output file to.
 		string fileLocation;
-		/// Exit operating system with -1 and output error to cerr.
-		void exitWithError(string errorMessage);
 };
 
 #endif

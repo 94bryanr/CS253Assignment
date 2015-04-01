@@ -8,6 +8,7 @@
 #include "PGM.h"
 #include "PGMAreader.h"
 #include "PGMBreader.h"
+#include "ExitWithError.h"
 
 using std::fstream;
 using std::string;

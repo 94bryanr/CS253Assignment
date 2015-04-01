@@ -5,7 +5,8 @@ Morph::Morph(vector<KeyPoint> map, PGM pgm) :
 	outputPGM(pgm),
 	keyPoints(map)
 {
-	cout << "Morph Constructor" << endl;
+	if(map.size() == 0)
+		ExitWithError("Need at least 1 key point");
 	modifyImage();
 	cout << outputPGM.at(0,0) << endl;
 	cout << inputPGM.at(0,0) << endl;
@@ -16,14 +17,14 @@ PGM Morph::getPGM(){
 }
 
 void Morph::modifyImage(){
-	for(int y = 0; y < inputPGM.getHeight(); y++){
-		for(int x = 0; x < inputPGM.getWidth(); x++){
+	for(unsigned int y = 0; y < inputPGM.getHeight(); y++){
+		for(unsigned int x = 0; x < inputPGM.getWidth(); x++){
 			int inputX = x;
 			int inputY = y;
 
 			// Check to see if pixel is destination of key point
 			bool destinationPixel = false;
-			for (int keyPoint = 0; keyPoint < keyPoints.size(); keyPoint++){
+			for (unsigned int keyPoint = 0; keyPoint < keyPoints.size(); keyPoint++){
 				KeyPoint currentKeyPoint = keyPoints[keyPoint];
 				if(x == currentKeyPoint.getDestinationX() && 
 						y == currentKeyPoint.getDestinationY()){
@@ -48,9 +49,9 @@ void Morph::modifyImage(){
 			
 			
 			unsigned int defaultColor = 0;
-			if (inputX < 0 || inputX > inputPGM.getWidth()-1)
+			if (inputX < 0 || inputX > ((int)inputPGM.getWidth()-1))
 				outputPGM.setPixel(x,y,defaultColor);
-			else if (inputY < 0 || inputY > inputPGM.getHeight()-1)
+			else if (inputY < 0 || inputY > ((int)inputPGM.getHeight()-1))
 				outputPGM.setPixel(x,y,defaultColor);
 			else
 				outputPGM.setPixel(x,y,inputPGM.at(inputX, inputY));
@@ -58,7 +59,7 @@ void Morph::modifyImage(){
 	}
 }
 
-double Morph::weightKeyPoint(int x, int y, KeyPoint keyPoint){
+double Morph::weightKeyPoint(unsigned int x, unsigned int y, KeyPoint keyPoint){
 	if(x == keyPoint.getDestinationX() && y == keyPoint.getDestinationY())
 		ExitWithError("Can not calculate KeyPoint weight against itself");
 	int distanceX = (x-keyPoint.getDestinationX());
@@ -68,12 +69,12 @@ double Morph::weightKeyPoint(int x, int y, KeyPoint keyPoint){
 	return weight;
 }
 
-vector<double> Morph::averageKeyPoints(int x, int y){
+vector<double> Morph::averageKeyPoints(unsigned int x, unsigned int y){
 	vector<double> average;
 	double finalWeight = 0;
 	double sumKeyPointsX = 0;
 	double sumKeyPointsY = 0;
-	for (int keyPoint = 0; keyPoint < keyPoints.size(); keyPoint++){
+	for (unsigned long keyPoint = 0; keyPoint < keyPoints.size(); keyPoint++){
 		KeyPoint currentKeyPoint = keyPoints[keyPoint];
 		double weight = weightKeyPoint(x, y, currentKeyPoint);
 		double magnitudeX = weight * currentKeyPoint.getDifferenceX();

@@ -19,8 +19,8 @@ class Morph{
 		PGM outputPGM;
 		vector<KeyPoint> keyPoints;
 		void modifyImage();
-		double weightKeyPoint(int x, int y, KeyPoint keyPoint);
-		vector<double> averageKeyPoints(int x, int y);
+		double weightKeyPoint(unsigned int x, unsigned int y, KeyPoint keyPoint);
+		vector<double> averageKeyPoints(unsigned int x, unsigned int y);
 };
 
 #endif
