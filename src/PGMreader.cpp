@@ -31,6 +31,7 @@ PGMreader::PGMreader(string filename){
 	else{
 		ExitWithError("Error: Incorrect Filetype");
 	}
+    fileStream.close();
 }
 
 /// Get PGM object back from PGMreader
@@ -50,6 +51,13 @@ PGM PGMreader::getPGM(){
 
 char PGMreader::getType(){
 	return chosenReader;
+}
+
+PGMreader::~PGMreader(){
+    if(chosenReader == 'a')
+        delete readerA;
+    else if(chosenReader == 'b')
+        delete readerB;
 }
 
 #endif

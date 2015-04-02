@@ -22,6 +22,7 @@ class PGMreader{
 		PGM getPGM();
 		/// Get the type of file that was given to the reader
 		char getType();
+        ~PGMreader();
 
 	private:
 		/// Holds the PGM reader

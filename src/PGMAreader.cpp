@@ -14,6 +14,7 @@ PGMAreader::PGMAreader(string filename){
 
 	testMagicNumber();
 	readFile();
+    fileStream.close();
 }
 
 PGM PGMAreader::getPGM(){

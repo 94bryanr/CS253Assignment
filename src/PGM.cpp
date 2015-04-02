@@ -1,6 +1,5 @@
 #include "PGM.h"
 
-using std::cout;
 using std::endl;
 using std::vector;
 using std::string;
@@ -77,8 +76,6 @@ unsigned int PGM::at(unsigned int x, unsigned int y){
 void PGM::setPixel(unsigned int x, unsigned int y, unsigned int newValue){
 	if (newValue > maxAllowedValue)
 		ExitWithError("Set Pixel, new value out of range");
-	cout << "Setting (" << x << "," << y << "):" << at(x,y);
-	cout << " To: " << newValue << endl;
 	pixelData[getArrayLocation(x,y)] = newValue;
 }
 

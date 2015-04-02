@@ -7,7 +7,6 @@
 #include "KeyPoint.h"
 #include <math.h>
 
-using std::cout;
 using std::endl;
 
 class Morph{

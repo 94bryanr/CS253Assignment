@@ -10,7 +10,6 @@
 #include <vector>
 
 using std::string;
-using std::cout;
 using std::endl;
 using std::fstream;
 using std::stringstream;

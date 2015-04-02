@@ -4,7 +4,6 @@
 
 using std::endl;
 using std::ifstream;
-using std::cout;
 
 PGMBreader::PGMBreader(string filename){ 
 	fileStream.open(filename.c_str(), std::ios_base::in | std::ios_base::binary);

@@ -8,8 +8,6 @@ Morph::Morph(vector<KeyPoint> map, PGM pgm) :
 	if(map.size() == 0)
 		ExitWithError("Need at least 1 key point");
 	modifyImage();
-	cout << outputPGM.at(0,0) << endl;
-	cout << inputPGM.at(0,0) << endl;
 }
 
 PGM Morph::getPGM(){
@@ -31,7 +29,6 @@ void Morph::modifyImage(){
 					// It is, so give back the original coordinates
 					inputX = currentKeyPoint.getOriginalX();
 					inputY = currentKeyPoint.getOriginalY();
-					cout << "Destination Pixel" << endl;
 					destinationPixel = true;
 				}
 			}
@@ -44,7 +41,6 @@ void Morph::modifyImage(){
 				int deltaY = round(deltas[1]);
 				inputX = x - deltaX;
 				inputY = y - deltaY;
-				cout << "DelX: " << deltaX << " DelY: " << deltaY << endl;
 			}
 			
 			
@@ -79,17 +75,11 @@ vector<double> Morph::averageKeyPoints(unsigned int x, unsigned int y){
 		double weight = weightKeyPoint(x, y, currentKeyPoint);
 		double magnitudeX = weight * currentKeyPoint.getDifferenceX();
 		double magnitudeY = weight * currentKeyPoint.getDifferenceY();
-		cout << "DiffX: " << currentKeyPoint.getDifferenceX() << endl;
-		cout << "DiffY: " << currentKeyPoint.getDifferenceY() << endl;
 		finalWeight += weight;
 		sumKeyPointsX += magnitudeX;
 		sumKeyPointsY += magnitudeY;
-		cout << "W: " << weight << " X: " << magnitudeX <<
-		   	" Y: " << magnitudeY << endl;
 	}
 
-	cout << "FW: " << finalWeight << " FX: " << 
-		sumKeyPointsX << " FY: " << sumKeyPointsY << endl;
 	double deltaX = sumKeyPointsX/finalWeight;
 	double deltaY = sumKeyPointsY/finalWeight;
 	average.push_back(deltaX);
