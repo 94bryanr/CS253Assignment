@@ -21,33 +21,28 @@ int main(int argc, char* argv[]){
 	}
 
 	// Get arguments
-	string inputImage = argv[1];
-	string inputKeyPoints = argv[2];
-	string outputLocation = argv[3];
+	string startImageLocation = argv[1];
+	string endImageLocation = argv[2];
+	string keypointLocation = argv[3];
 
-	// Parse in PGM files
-	PGMreader reader(inputImage);
-	PGM pgm = reader.getPGM();
+	// Parse in start PGM
+	PGMreader startReader(startImageLocation);
+	PGM startPGM = startReader.getPGM();
+
+	// Parse in end PGM
+	PGMreader endReader(endImageLocation);
+	PGM endPGM = endReader.getPGM();
 
 	// Get Mapping
-	Mapping mapping(inputKeyPoints);
-	vector<KeyPoint> keyVector = mapping.getKeyPoints();
+	Mapping mapping(keypointLocation); //TODO: Will no longer work
+	vector<KeyPoint> keyVector = mapping.getKeyPoints(); //TODO: Will no longer work
 
 	// Morph image
-	Morph morph (mapping.getKeyPoints(), pgm);
-	pgm = morph.getPGM();
+	//TODO: Pass 1 argument? Do this multiple times?
+	//Morph morph (mapping.getKeyPoints(), startPGM); 
+	//morphedPGM = morph.getPGM();
 	
-	//Output files
-	if (outputLocation.substr(outputLocation.length()-5).compare(".pgma" ) == 0){
-		PGMAwriter writer(pgm, outputLocation);
-		writer.write();
-	}
-	else if (outputLocation.substr(outputLocation.length()-4).compare(".pgm") == 0){
-		PGMBwriter writer(pgm, outputLocation);
-		writer.write();
-	}
-	else{
-		ExitWithError("Bad output filename. Need filetype");
-	}
-
+	// Output image
+	//PGMAwriter writer(pgm, outputLocation);
+	//writer.write();
 }
