@@ -58,7 +58,9 @@ int main(int argc, char* argv[]){
 		PGM morphedPGM = morph.getPGM();
 		
 		// Output image
-		PGMAwriter writer(morphedPGM, std::to_string(imageIndex+1) + ".pgm");
+		stringstream ss;
+        ss << (imageIndex + 1);
+		PGMAwriter writer(morphedPGM, ss.str() + ".pgm");
 		writer.write();
 	}
 }

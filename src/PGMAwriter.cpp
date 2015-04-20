@@ -8,9 +8,7 @@ using std::endl;
 using std::fstream;
 
 PGMAwriter::PGMAwriter(PGM pgm, string fileLocation)
-   	: pgm(pgm), fileLocation(fileLocation)  {
-
-}
+   	: pgm(pgm), fileLocation(fileLocation)  {}
 
 void PGMAwriter::write(){
 	fstream outputStream(fileLocation.c_str(), std::ios::out);
