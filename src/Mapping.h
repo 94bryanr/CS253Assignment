@@ -8,6 +8,7 @@
 #include "ExitWithError.h"
 #include <sstream>
 #include <vector>
+#include "ExtendedKeyPoint.h"
 
 using std::string;
 using std::endl;
@@ -18,11 +19,12 @@ using std::vector;
 class Mapping{
 	public:
 		Mapping(string filename);
-		vector<KeyPoint> getKeyPoints();
+		vector<ExtendedKeyPoint> getExtendedKeyPoints();
 	private:
 		void parse();
+		void parseLine(string line);
 		fstream fileStream;
-		vector<KeyPoint> keyPoints;
+		vector<ExtendedKeyPoint> extendedKeyPoints;
 		string trim(string toTrim);
 };
 

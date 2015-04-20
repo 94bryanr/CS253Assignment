@@ -34,15 +34,30 @@ int main(int argc, char* argv[]){
 	PGM endPGM = endReader.getPGM();
 
 	// Get Mapping
-	Mapping mapping(keypointLocation); //TODO: Will no longer work
-	vector<KeyPoint> keyVector = mapping.getKeyPoints(); //TODO: Will no longer work
+	Mapping mapping(keypointLocation);
+	vector<ExtendedKeyPoint> keyVector = mapping.getExtendedKeyPoints();
 
 	// Morph image
-	//TODO: Pass 1 argument? Do this multiple times?
-	//Morph morph (mapping.getKeyPoints(), startPGM); 
-	//morphedPGM = morph.getPGM();
-	
-	// Output image
-	//PGMAwriter writer(pgm, outputLocation);
-	//writer.write();
+	//For each image
+	// N = intermediate frames
+	int N = keyVector.at(0).size();
+	std::cout << "N: " << N << endl;
+	for (int imageIndex = 0; imageIndex < N; imageIndex++){
+		//Morph using keypoints from each EKP.at(imageindex)
+		vector<KeyPoint> map;
+		//Fill out map
+		for(int keyPointIndex = 0; keyPointIndex < int(keyVector.size()); keyPointIndex++){
+			map.push_back(keyVector.at(keyPointIndex).getKeyPoint(imageIndex));
+		}
+		PGM currentImage = startPGM;
+		Morph morph (map, currentImage); 
+		PGM morphedPGM = morph.getPGM();
+		
+		//Interpolate
+		
+		
+		// Output image
+		PGMAwriter writer(morphedPGM, std::to_string(imageIndex+1) + ".pgm");
+		writer.write();
+	}
 }

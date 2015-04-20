@@ -1,7 +1,8 @@
-ASSIGNMENT = pa5
+ASSIGNMENT = pa6
+ASSIGNMENTCAP = PA6
 CC= g++
 CFLAGS= -c -Wall -std=c++98 -pedantic-errors -Wsign-compare
-OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o
+OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o ExtendedKeyPoint.o
 
 PA: $(OBJFILES)
 		$(CC) $(OBJFILES) -o $(ASSIGNMENT)
@@ -33,6 +34,9 @@ PGMBreader.o: PGMBreader.cpp PGMBreader.h
 KeyPoint.o: KeyPoint.cpp KeyPoint.h
 		$(CC) $(CFLAGS) KeyPoint.cpp
 
+ExtendedKeyPoint.o: ExtendedKeyPoint.cpp ExtendedKeyPoint.h
+		$(CC) $(CFLAGS) ExtendedKeyPoint.cpp
+
 Mapping.o: Mapping.cpp Mapping.h
 		$(CC) $(CFLAGS) Mapping.cpp
 
@@ -43,7 +47,7 @@ Morph.o: Morph.cpp Morph.h
 		$(CC) $(CFLAGS) Morph.cpp
 
 tar: 
-		tar -cf $(ASSIGNMENT).tar *.h *.cpp Makefile
+		tar -cf $(ASSIGNMENTCAP).tar *.h *.cpp Makefile
 
 clean:
-		rm *.o *.pgm $(ASSIGNMENT) $(ASSIGNMENT).tar
+		rm *.o *.pgm $(ASSIGNMENT) $(ASSIGNMENTCAP).tar
