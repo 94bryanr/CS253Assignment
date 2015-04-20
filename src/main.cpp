@@ -8,6 +8,7 @@
 #include "Mapping.h"
 #include "ExitWithError.h"
 #include "Morph.h"
+#include "PGMshader.h"
 
 void exitWithError(string errorMessage);
 
@@ -36,25 +37,25 @@ int main(int argc, char* argv[]){
 	// Get Mapping
 	Mapping mapping(keypointLocation);
 	vector<ExtendedKeyPoint> keyVector = mapping.getExtendedKeyPoints();
+	// N = intermediate frames
+	unsigned int N = keyVector.at(0).size();
+
+	//Interpolate
+	PGMshader shader(startPGM, endPGM, N);
+	//These will be used as input images for the morpher
+	vector<PGM> interpolatedPGMs = shader.getInterpolatedPGMs();
 
 	// Morph image
-	//For each image
-	// N = intermediate frames
-	int N = keyVector.at(0).size();
-	std::cout << "N: " << N << endl;
-	for (int imageIndex = 0; imageIndex < N; imageIndex++){
+	for (unsigned int imageIndex = 0; imageIndex < N; imageIndex++){
 		//Morph using keypoints from each EKP.at(imageindex)
 		vector<KeyPoint> map;
 		//Fill out map
 		for(int keyPointIndex = 0; keyPointIndex < int(keyVector.size()); keyPointIndex++){
 			map.push_back(keyVector.at(keyPointIndex).getKeyPoint(imageIndex));
 		}
-		PGM currentImage = startPGM;
+		PGM currentImage = interpolatedPGMs.at(imageIndex);
 		Morph morph (map, currentImage); 
 		PGM morphedPGM = morph.getPGM();
-		
-		//Interpolate
-		
 		
 		// Output image
 		PGMAwriter writer(morphedPGM, std::to_string(imageIndex+1) + ".pgm");

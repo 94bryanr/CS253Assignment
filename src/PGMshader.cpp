@@ -1,0 +1,39 @@
+#include "PGMshader.h"
+
+PGMshader::PGMshader(PGM startImage, PGM endImage, int iterations) :
+	startImage(startImage), endImage(endImage), iterations(iterations)
+{
+	if(startImage.getWidth() != endImage.getWidth()){
+		ExitWithError("PGMshader: Unequal image widths");
+	}
+	if(startImage.getHeight() != endImage.getHeight()){
+		ExitWithError("PGMshader: Unequal image heights");
+	}
+	interpolate();
+}
+
+void PGMshader::interpolate(){
+	//Iterate through internal frames
+	for (int index = 0; index < iterations; index++){
+		int j = index + 1;
+		int N = iterations;
+		double sourceScalar = double(N - j + 1) / double(N + 1);
+		double destinationScalar = double(j)/double(N + 1);
+		vector<unsigned int> pixelData;
+		// Iterate through x and y of source and destination images to fill in shaded image
+		for(unsigned int y = 0; y < startImage.getHeight(); y++){
+			for(unsigned int x = 0; x < startImage.getWidth(); x++){
+				double sourceWeight = sourceScalar * double(startImage.at(x,y));
+				double destinationWeight = destinationScalar * double(endImage.at(x,y));
+				int finalPixel = round(sourceWeight + destinationWeight);
+				pixelData.push_back(finalPixel);
+			}
+		}
+		PGM interpolated(startImage.getWidth(), startImage.getHeight(), 256, pixelData);
+		interpolatedPGMs.push_back(interpolated);
+	}
+}
+
+vector<PGM> PGMshader::getInterpolatedPGMs() const{
+	return interpolatedPGMs;
+}

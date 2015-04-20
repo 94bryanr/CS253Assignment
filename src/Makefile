@@ -2,7 +2,7 @@ ASSIGNMENT = pa6
 ASSIGNMENTCAP = PA6
 CC= g++
 CFLAGS= -c -Wall -std=c++98 -pedantic-errors -Wsign-compare
-OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o ExtendedKeyPoint.o
+OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o ExtendedKeyPoint.o PGMshader.o
 
 PA: $(OBJFILES)
 		$(CC) $(OBJFILES) -o $(ASSIGNMENT)
@@ -30,6 +30,9 @@ PGMAreader.o: PGMAreader.cpp PGMAreader.h
 	
 PGMBreader.o: PGMBreader.cpp PGMBreader.h
 		$(CC) $(CFLAGS) PGMBreader.cpp
+	
+PGMshader.o: PGMshader.cpp PGMshader.h
+		$(CC) $(CFLAGS) PGMshader.cpp
 
 KeyPoint.o: KeyPoint.cpp KeyPoint.h
 		$(CC) $(CFLAGS) KeyPoint.cpp
