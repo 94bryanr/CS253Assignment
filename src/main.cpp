@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
 	Mapping mapping(keypointLocation);
 	vector<ExtendedKeyPoint> keyVector = mapping.getExtendedKeyPoints();
 	// N = intermediate frames
-	unsigned int N = keyVector.at(0).size();
+	unsigned int N = keyVector.at(0).size()-1;
 
 	//Interpolate
 	PGMshader shader(startPGM, endPGM, N);
