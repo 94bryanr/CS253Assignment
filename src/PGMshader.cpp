@@ -13,7 +13,7 @@ PGMshader::PGMshader(PGM startImage, PGM endImage, int currentImage, int iterati
 }
 
 void PGMshader::interpolate(){
-	int j = currentImage;
+	int j = currentImage + 1;
 	int N = iterations;
 	double sourceScalar = double(N - j + 1) / double(N + 1);
 	double destinationScalar = double(j)/double(N + 1);
