@@ -11,6 +11,8 @@ class ExtendedKeyPoint{
 		void addKeyPoint(KeyPoint keyPoint);
 		KeyPoint getKeyPoint(int index);
 		int size();
+		KeyPoint getSourceKeyPoint(int index);
+		KeyPoint getDestinationKeyPoint(int index);
 	private:
 		vector<KeyPoint> keyPoints;
 };

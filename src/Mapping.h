@@ -9,6 +9,7 @@
 #include <sstream>
 #include <vector>
 #include "ExtendedKeyPoint.h"
+#include "Coordinate.h"
 
 using std::string;
 using std::endl;
@@ -19,13 +20,19 @@ using std::vector;
 class Mapping{
 	public:
 		Mapping(string filename);
-		vector<ExtendedKeyPoint> getExtendedKeyPoints();
+		int getIntermediates();
+		vector<KeyPoint> getSourceKeyPoints(int line);
+		vector<KeyPoint> getDestinationKeyPoints(int line);
 	private:
 		void parse();
 		void parseLine(string line);
 		fstream fileStream;
-		vector<ExtendedKeyPoint> extendedKeyPoints;
 		string trim(string toTrim);
+		//Each larger vector is a line, each smaller vector are the KeyPoints for that line
+		vector<vector<KeyPoint> > sourceKeyPoints;
+		vector<vector<KeyPoint> > destinationKeyPoints;
+		int intermediates;
+		int coordinatesPerLine;
 };
 
 #endif

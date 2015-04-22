@@ -36,31 +36,28 @@ int main(int argc, char* argv[]){
 
 	// Get Mapping
 	Mapping mapping(keypointLocation);
-	vector<ExtendedKeyPoint> keyVector = mapping.getExtendedKeyPoints();
 	// N = intermediate frames
-	unsigned int N = keyVector.at(0).size()-1;
+	unsigned int N = mapping.getIntermediates();
 
-	//Interpolate
-	PGMshader shader(startPGM, endPGM, N);
-	//These will be used as input images for the morpher
-	vector<PGM> interpolatedPGMs = shader.getInterpolatedPGMs();
 
-	// Morph image
+	// Build each j image
 	for (unsigned int imageIndex = 0; imageIndex < N; imageIndex++){
-		//Morph using keypoints from each EKP.at(imageindex)
-		vector<KeyPoint> map;
-		//Fill out map
-		for(int keyPointIndex = 0; keyPointIndex < int(keyVector.size()); keyPointIndex++){
-			map.push_back(keyVector.at(keyPointIndex).getKeyPoint(imageIndex));
-		}
-		PGM currentImage = interpolatedPGMs.at(imageIndex);
-		Morph morph (map, currentImage); 
-		PGM morphedPGM = morph.getPGM();
-		
-		// Output image
+		vector<unsigned int> image;
+		//Build source image
+		vector<KeyPoint> sourceKeyPointMap = mapping.getSourceKeyPoints(imageIndex);
+		Morph sourceMorph(sourceKeyPointMap, startPGM);
+		//Build destination image
+		vector<KeyPoint> destinationKeyPointMap = mapping.getDestinationKeyPoints(imageIndex);
+		Morph destinationMorph(destinationKeyPointMap, endPGM);
+
+		//Interpolate
+		PGMshader interpolater(sourceMorph.getPGM(), destinationMorph.getPGM(), imageIndex, N);
+		PGM currentPGM = interpolater.getInterpolatedPGM();
+
+		//Output image
 		stringstream ss;
         ss << (imageIndex + 1);
-		PGMAwriter writer(morphedPGM, ss.str() + ".pgm");
+		PGMAwriter writer(currentPGM, ss.str() + ".pgm");
 		writer.write();
 	}
 }

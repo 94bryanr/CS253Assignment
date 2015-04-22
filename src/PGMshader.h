@@ -7,14 +7,15 @@
 
 class PGMshader{
 	public:
-		PGMshader(PGM startImage, PGM endImage, int iterations);
-		vector<PGM> getInterpolatedPGMs() const;
+		PGMshader(PGM startImage, PGM endImage, int currentImage, int iterations);
+		PGM getInterpolatedPGM() const;
 	private:
 		void interpolate();
 		PGM startImage;
 		PGM endImage;
 		int iterations;
-		vector<PGM> interpolatedPGMs;
+		int currentImage;
+		PGM interpolatedPGM;
 };
 
 #endif

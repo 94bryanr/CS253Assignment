@@ -2,7 +2,7 @@ ASSIGNMENT = pa6
 ASSIGNMENTCAP = PA6
 CC= g++
 CFLAGS= -c -Wall -std=c++98 -pedantic-errors -Wsign-compare
-OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o ExtendedKeyPoint.o PGMshader.o
+OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o ExtendedKeyPoint.o PGMshader.o Coordinate.o
 
 PA: $(OBJFILES)
 		$(CC) $(OBJFILES) -o $(ASSIGNMENT)
@@ -48,6 +48,9 @@ ExitWithError.o: ExitWithError.cpp ExitWithError.h
 	
 Morph.o: Morph.cpp Morph.h
 		$(CC) $(CFLAGS) Morph.cpp
+
+Coordinate.o: Coordinate.cpp Coordinate.h
+		$(CC) $(CFLAGS) Coordinate.cpp
 
 tar: 
 		tar -cf $(ASSIGNMENTCAP).tar *.h *.cpp Makefile
