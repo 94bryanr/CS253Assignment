@@ -18,9 +18,11 @@ void PGMshader::interpolate(){
 	double sourceScalar = double(N - j + 1) / double(N + 1);
 	double destinationScalar = double(j)/double(N + 1);
 	vector<unsigned int> pixelData;
+
 	// Iterate through x and y of source and destination images to fill in shaded image
+	unsigned int width = startImage.getWidth();
 	for(unsigned int y = 0; y < startImage.getHeight(); y++){
-		for(unsigned int x = 0; x < startImage.getWidth(); x++){
+		for(unsigned int x = 0; x < width; x++){
 			double sourceWeight = sourceScalar * double(startImage.at(x,y));
 			double destinationWeight = destinationScalar * double(endImage.at(x,y));
 			int finalPixel = round(sourceWeight + destinationWeight);

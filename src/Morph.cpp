@@ -1,12 +1,13 @@
 #include "Morph.h"
 
-Morph::Morph(vector<KeyPoint> map, PGM pgm) : 
+Morph::Morph(const vector<KeyPoint> map, PGM pgm) : 
    	inputPGM(pgm), 
 	outputPGM(pgm),
 	keyPoints(map)
 {
-	if(map.size() == 0)
+	if(map.size() == 0){
 		ExitWithError("Need at least 1 key point");
+	}
 	modifyImage();
 }
 
@@ -36,13 +37,13 @@ void Morph::modifyImage(){
 			// Else...
 			// Pixel is not a destination of a key point, need weighted average
 			if (!destinationPixel){
+				// TODO: Most expensive operation
 				vector<double> deltas = averageKeyPoints(x,y);
 				int deltaX = round(deltas[0]);
 				int deltaY = round(deltas[1]);
 				inputX = x - deltaX;
 				inputY = y - deltaY;
 			}
-			
 			
 			unsigned int defaultColor = 0;
 			if (inputX < 0 || inputX > ((int)inputPGM.getWidth()-1))
@@ -67,11 +68,12 @@ double Morph::weightKeyPoint(unsigned int x, unsigned int y, KeyPoint keyPoint){
 
 vector<double> Morph::averageKeyPoints(unsigned int x, unsigned int y){
 	vector<double> average;
+	average.reserve(2);
 	double finalWeight = 0;
 	double sumKeyPointsX = 0;
 	double sumKeyPointsY = 0;
 	for (unsigned long keyPoint = 0; keyPoint < keyPoints.size(); keyPoint++){
-		KeyPoint currentKeyPoint = keyPoints[keyPoint];
+		KeyPoint &currentKeyPoint = keyPoints[keyPoint];
 		double weight = weightKeyPoint(x, y, currentKeyPoint);
 		double magnitudeX = weight * currentKeyPoint.getDifferenceX();
 		double magnitudeY = weight * currentKeyPoint.getDifferenceY();

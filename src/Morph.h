@@ -11,7 +11,7 @@ using std::endl;
 
 class Morph{
 	public:
-		Morph(vector<KeyPoint> map, PGM pgm);
+		Morph(const vector<KeyPoint> map, PGM pgm);
 		PGM getPGM();
 	private:
 		PGM inputPGM;
