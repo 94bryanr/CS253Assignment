@@ -25,21 +25,13 @@ void PGMAwriter::write(){
 
 	//Pixels
 	vector<unsigned int> pixelData = pgm.getPixelData();
-	//string outputString = "";
 	for (unsigned int location = 0; location < pgm.getTotalPixels(); location++){
-
-		//char pixelToString[4];
-		//itoa(pixelData[location], pixelToString, 10);
-		//outputString += (pixelToString + " ");
-		
 		outputStream << pixelData[location] << " ";
 		//Outputs the pixels with line formatting
-		if( ( (location+1) % pgm.getWidth() ) == 0 ){
-			outputStream << endl;
-			//outputString += "\n";
-		}
+		//if( ( (location+1) % pgm.getWidth() ) == 0 ){
+		//	outputStream << "\n";
+		//}
 	}
-	//outputStream << outputString;
 }
 
 #endif

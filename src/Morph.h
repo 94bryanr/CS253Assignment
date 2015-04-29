@@ -19,6 +19,7 @@ class Morph{
 		vector<KeyPoint> keyPoints;
 		unsigned int imageHeight;
 		unsigned int imageWidth;
+		unsigned int keyPointSize;
 		void modifyImage();
 		double weightKeyPoint(unsigned int x, unsigned int y, KeyPoint &keyPoint) const;
 		vector<double> averageKeyPoints(unsigned int x, unsigned int y);

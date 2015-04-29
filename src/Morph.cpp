@@ -8,6 +8,7 @@ Morph::Morph(const vector<KeyPoint> &map, const PGM &pgm) :
 	}
 	imageHeight = inputPGM.getHeight();
 	imageWidth = inputPGM.getWidth();
+	keyPointSize = map.size();
 	modifyImage();
 }
 
@@ -54,12 +55,13 @@ void Morph::modifyImage(){
 
 //Run on each keypoint, at each x,y, on each image
 double Morph::weightKeyPoint(unsigned int x, unsigned int y, KeyPoint &keyPoint) const{
-	if(x == keyPoint.getDestinationX() && y == keyPoint.getDestinationY())
+	unsigned int destX = keyPoint.getDestinationX();
+	unsigned int destY = keyPoint.getDestinationY();;
+	if(x == destX && y == destY)
 		ExitWithError("Can not calculate KeyPoint weight against itself");
-	int distanceX = (x-keyPoint.getDestinationX());
-	int distanceY = (y-keyPoint.getDestinationY());
+	int distanceX = (x-destX);
+	int distanceY = (y-destY);
 	double weight = (double)1.0 / (double)((distanceX*distanceX) + (distanceY*distanceY));
-
 	return weight;
 }
 
@@ -68,15 +70,15 @@ vector<double> Morph::averageKeyPoints(unsigned int x, unsigned int y){
 	double finalWeight = 0;
 	double sumKeyPointsX = 0;
 	double sumKeyPointsY = 0;
-	for (unsigned long keyPoint = 0; keyPoint < keyPoints.size(); keyPoint++){
+	for (unsigned int keyPoint = 0; keyPoint < keyPointSize; keyPoint++){
 		KeyPoint &currentKeyPoint = keyPoints[keyPoint];
 		//Runs weightKeyPoint on each keyPoint and current x,y 
 		double weight = weightKeyPoint(x, y, currentKeyPoint);
-		double magnitudeX = weight * currentKeyPoint.getDifferenceX();
-		double magnitudeY = weight * currentKeyPoint.getDifferenceY();
-		finalWeight += weight;
-		sumKeyPointsX += magnitudeX;
-		sumKeyPointsY += magnitudeY;
+		finalWeight += weight; 
+		// Adding magnitude X
+		sumKeyPointsX += (weight * currentKeyPoint.getDifferenceX());
+		// Adding magnitude Y
+		sumKeyPointsY += (weight * currentKeyPoint.getDifferenceY());
 	}
 	vector<double> average;
 	average.reserve(2);

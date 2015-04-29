@@ -1,7 +1,7 @@
 ASSIGNMENT = pa7
 ASSIGNMENTCAP = PA7
 CC= g++
-CFLAGS= -c -Wall -std=c++98 -pedantic-errors -Wsign-compare
+CFLAGS= -O2 -c -Wall -std=c++98 -pedantic-errors -Wsign-compare
 OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o ExtendedKeyPoint.o PGMshader.o Coordinate.o
 
 PA: $(OBJFILES)
