@@ -23,10 +23,6 @@ void Mapping::parse(){
 
 }
 
-int Mapping::getIntermediates(){
-	return intermediates;
-}
-
 void Mapping::parseLine(string line){
 	vector<Coordinate> coordinates;
 	line = trim(line);
@@ -77,6 +73,7 @@ void Mapping::parseLine(string line){
 	for(int keyPointIndex = 0; keyPointIndex < int(lineSourceKeyPoints.size()); keyPointIndex++){
 		KeyPoint sourceToCheck = lineSourceKeyPoints[keyPointIndex];
 		
+		//TODO: getSourceKeyPoints is innefficient here
 		//Iterate through all previous keypoints at our destination
 		vector<KeyPoint> possibleSourceConflicts = getSourceKeyPoints(keyPointIndex);
 
@@ -104,9 +101,12 @@ string Mapping::trim(string toTrim){
 	return toTrim;
 }
 
+//TODO: Make map table
 vector<KeyPoint> Mapping::getSourceKeyPoints(int image){
+	int mapSize = sourceKeyPoints.size();
 	vector<KeyPoint> map;
-	for (int i = 0; i < int(sourceKeyPoints.size()) ; i++){
+	map.reserve(mapSize);
+	for (int i = 0; i < mapSize; i++){
 		map.push_back(sourceKeyPoints[i][image]);
 	}
 	return map;

@@ -13,25 +13,35 @@ class PGM{
 		/// Constructor
 		PGM(unsigned int width, unsigned int height, unsigned int max, vector<unsigned int> pixelData);
 		/// Returns the width of the image.
-		unsigned int getWidth();
+		inline unsigned int getWidth() const{return width;};
 		/// Returns the height in pixels of the image.
-		unsigned int getHeight();
+		inline unsigned int getHeight() const{return height;};
 		/// Returns the maximum pixel value (0-255 inclusive) allowed in the image.
-		unsigned int getMaxAllowedValue();
+		inline unsigned int getMaxAllowedValue() const{return maxAllowedValue;};
 		/// Returns height*width, or the total number of pixels in the image.
-		unsigned int getTotalPixels();
+		inline unsigned int getTotalPixels() const{return totalPixels;};
 		/// Returns a vector that represents each pixel in the image.
-		vector<unsigned int> getPixelData();
+		inline vector<unsigned int> getPixelData() const{return pixelData;};
 		/// Returns the smallest pixel value found in the image.
-		unsigned int getMinPixel();
+		inline unsigned int getMinPixel() const{return minPixel;};
 		/// Returns the largest pixel value found in the image.
-		unsigned int getMaxPixel();
+		inline unsigned int getMaxPixel() const{return maxPixel;};
 		/// Returns the average pixel value across the entire image.
-		double getAveragePixel();
+		inline double getAveragePixel() const{return averagePixel;};
 		/// Get pixel at location x,y
-		unsigned int at(unsigned int x, unsigned int y);
+		inline unsigned int at(unsigned int x, unsigned int y){
+			if(x > (width-1))
+				ExitWithError("PGM at, x value out of bounds");
+			if(y > (height-1))
+				ExitWithError("PGM at, y value out of bounds");
+			return pixelData[getArrayLocation(x,y)];
+		};
 		/// Set the pixel at location(x,y) to newValue
-		void setPixel(unsigned int x, unsigned int y, unsigned int newValue);
+		inline void setPixel(unsigned int x, unsigned int y, unsigned int newValue){
+			if (newValue > maxAllowedValue)
+				ExitWithError("Set Pixel, new value out of range");
+			pixelData[getArrayLocation(x,y)] = newValue;
+		};
 	
 	private:
 		/// Width in pixels of the image.
@@ -55,7 +65,13 @@ class PGM{
 		/// The average pixel value in the image.
 		double averagePixel;
 		/// Get array location from (x,y)
-		unsigned int getArrayLocation(unsigned int x, unsigned int y);
+		inline unsigned int getArrayLocation(unsigned int x, unsigned int y){
+			if(x > width-1)
+				ExitWithError("GetArrayLocation, x coordinate out of range");
+			else if(y > height-1)
+				ExitWithError("GetArrayLocation, y coordinate out of range");
+			return (width*y) + x;
+		};
 };
 
 #endif

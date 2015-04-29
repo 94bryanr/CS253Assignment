@@ -1,5 +1,5 @@
-ASSIGNMENT = pa6
-ASSIGNMENTCAP = PA6
+ASSIGNMENT = pa7
+ASSIGNMENTCAP = PA7
 CC= g++
 CFLAGS= -c -Wall -std=c++98 -pedantic-errors -Wsign-compare
 OBJFILES = main.o PGM.o PGMreader.o PGMAreader.o PGMBreader.o PGMwriter.o PGMAwriter.o PGMBwriter.o KeyPoint.o Mapping.o ExitWithError.o Morph.o ExtendedKeyPoint.o PGMshader.o Coordinate.o
@@ -56,4 +56,4 @@ tar:
 		tar -cf $(ASSIGNMENTCAP).tar *.h *.cpp Makefile
 
 clean:
-		rm *.o *.pgm $(ASSIGNMENT) $(ASSIGNMENTCAP).tar
+		rm *.o $(ASSIGNMENT) $(ASSIGNMENTCAP).tar

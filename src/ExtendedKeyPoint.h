@@ -8,8 +8,8 @@ using std::vector;
 
 class ExtendedKeyPoint{
 	public:
-		void addKeyPoint(KeyPoint keyPoint);
-		int size();
+		inline void addKeyPoint(KeyPoint keyPoint){keyPoints.push_back(keyPoint);};
+		inline int size(){return keyPoints.size();};
 	private:
 		vector<KeyPoint> keyPoints;
 };

@@ -11,14 +11,16 @@ using std::endl;
 
 class Morph{
 	public:
-		Morph(const vector<KeyPoint> map, PGM pgm);
-		PGM getPGM();
+		Morph(const vector<KeyPoint> &map, const PGM &pgm);
+		inline PGM getPGM(){return outputPGM;};
 	private:
 		PGM inputPGM;
 		PGM outputPGM;
 		vector<KeyPoint> keyPoints;
+		unsigned int imageHeight;
+		unsigned int imageWidth;
 		void modifyImage();
-		double weightKeyPoint(unsigned int x, unsigned int y, KeyPoint keyPoint);
+		double weightKeyPoint(unsigned int x, unsigned int y, KeyPoint &keyPoint) const;
 		vector<double> averageKeyPoints(unsigned int x, unsigned int y);
 };
 

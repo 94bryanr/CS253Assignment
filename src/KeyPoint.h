@@ -2,18 +2,19 @@
 #define KeyPoint_H
 
 #include <iostream>
+#include "ExitWithError.h"
 using std::endl;
 
 class KeyPoint{
 	public:
 		KeyPoint(unsigned int originalX, unsigned int originalY,
 				unsigned int destinationX, unsigned int destinationY);
-		unsigned int getOriginalX();
-		unsigned int getOriginalY();
-		unsigned int getDestinationX();
-		unsigned int getDestinationY();
-		int getDifferenceX();
-		int getDifferenceY();
+		inline unsigned int getOriginalX(){return originalX;};
+		inline unsigned int getOriginalY(){return originalY;};
+		inline unsigned int getDestinationX(){return destinationX;};
+		inline unsigned int getDestinationY(){return destinationY;};
+		inline int getDifferenceX(){return differenceX;};
+		inline int getDifferenceY(){return differenceY;};
 	private:
 		unsigned int originalX;
 		unsigned int originalY;

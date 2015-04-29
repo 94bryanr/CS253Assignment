@@ -32,7 +32,3 @@ void PGMshader::interpolate(){
 	PGM interpolated(startImage.getWidth(), startImage.getHeight(), 256, pixelData);
 	interpolatedPGM = interpolated;
 }
-
-PGM PGMshader::getInterpolatedPGM() const{
-	return interpolatedPGM;
-}

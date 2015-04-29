@@ -9,27 +9,3 @@ KeyPoint::KeyPoint(
 		 	differenceX = destinationX - originalX;
 			differenceY = destinationY - originalY;
 }
-
-unsigned int KeyPoint::getOriginalX(){
-	return originalX;
-}
-
-unsigned int KeyPoint::getOriginalY(){
-	return originalY;
-}
-
-unsigned int KeyPoint::getDestinationX(){
-	return destinationX;
-}
-
-unsigned int KeyPoint::getDestinationY(){
-	return destinationY;
-}
-
-int KeyPoint::getDifferenceX(){
-	return differenceX;
-}
-
-int KeyPoint::getDifferenceY(){
-	return differenceY;
-}

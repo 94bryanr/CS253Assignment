@@ -8,7 +8,7 @@
 class PGMshader{
 	public:
 		PGMshader(PGM startImage, PGM endImage, int currentImage, int iterations);
-		PGM getInterpolatedPGM() const;
+		inline PGM getInterpolatedPGM() const{return interpolatedPGM;};
 	private:
 		void interpolate();
 		PGM startImage;

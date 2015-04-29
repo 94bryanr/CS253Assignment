@@ -20,7 +20,7 @@ using std::vector;
 class Mapping{
 	public:
 		Mapping(string filename);
-		int getIntermediates();
+		inline int getIntermediates(){return intermediates;};
 		vector<KeyPoint> getSourceKeyPoints(int line);
 		vector<KeyPoint> getDestinationKeyPoints(int line);
 	private:
