@@ -28,9 +28,9 @@ void PGMAwriter::write(){
 	for (unsigned int location = 0; location < pgm.getTotalPixels(); location++){
 		outputStream << pixelData[location] << " ";
 		//Outputs the pixels with line formatting
-		//if( ( (location+1) % pgm.getWidth() ) == 0 ){
-		//	outputStream << "\n";
-		//}
+		if( ( (location+1) % pgm.getWidth() ) == 0 ){
+			outputStream << "\n";
+		}
 	}
 }
 
